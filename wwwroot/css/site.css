@@ -1,0 +1,13 @@
+﻿html {
+	background-color: #171717;
+}
+
+body {
+	background-color: #171717;
+}
+
+.container {
+	background-color: gray;
+	border-style: solid;
+	border-color: rgb(37, 204, 45);
+}
