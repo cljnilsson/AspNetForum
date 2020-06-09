@@ -1,13 +1,35 @@
-﻿html {
-	background-color: #171717;
+﻿body {
+	background-color: #171713;
+	background-image: url("../images/semi-trans-bg.png");
+	background-repeat: no-repeat;
+	background-size: cover;
+	color: white;
 }
 
-body {
-	background-color: #171717;
+h3 {
+	margin-bottom: 0;
+}
+
+h3 a {
+	color: #00b365
 }
 
 .container {
-	background-color: gray;
+	background-color: #18171c;
 	border-style: solid;
-	border-color: rgb(37, 204, 45);
+	border-color: #00b365;
+}
+
+.section {
+	background-color: rgba(44,44,53,.5);
+	margin-top: 0.5rem;
+	text-align: left;
+}
+
+.section:hover{
+	background-color: rgba(44,44,53,.9);
+}
+.sectionIcon {
+	width: 60px;
+	height: 60px;
 }

@@ -20536,6 +20536,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "g:\\Personal Projects\\aspnetcoreapp\\Pages\\test\\index.cshtml",
+      "TargetPath": "Pages\\test\\index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "g:\\Personal Projects\\aspnetcoreapp\\Pages\\Error.cshtml",
       "TargetPath": "Pages\\Error.cshtml",
       "FileKind": "mvc"
