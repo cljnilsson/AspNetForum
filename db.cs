@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using LoremNET;
 using Microsoft.Extensions.Configuration;
+using Extensions;
 
 public class DB : DbContext
   {
@@ -15,12 +16,15 @@ public class DB : DbContext
 	public DbSet<Thread> Threads {get; set;}
 	public DbSet<Post> Posts {get; set;}
 
-
-
 	protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 	{
    		optionsBuilder.UseMySQL("server=localhost;database=forum;uid=root;password=;"); //Fix this at some point, not good practice for security reasons
 	}
+
+     public Guid Random() 
+     { // to prove not used by our C# code... 
+         throw new NotImplementedException(); 
+     }
 
 	public async void populateSections()
 	{
@@ -42,25 +46,26 @@ public class DB : DbContext
 
 	public void populateThreads()
 	{
-		var test = Sections.OrderBy(r => Guid.NewGuid()).Take(1).ToList().First(); //not random?
-		var threads = new Thread[] {
-			new Thread{author = Lorem.Email() , name = Lorem.Words(2,5), post = LoremNET.Lorem.Paragraph(4, 20, 3, 10), section = test},
-			new Thread{author = Lorem.Email() , name = Lorem.Words(2,5), post = LoremNET.Lorem.Paragraph(4, 20, 3, 10), section = test},
-			new Thread{author = Lorem.Email() , name = Lorem.Words(2,5), post = LoremNET.Lorem.Paragraph(4, 20, 3, 10), section = test},
-			new Thread{author = Lorem.Email() , name = Lorem.Words(2,5), post = LoremNET.Lorem.Paragraph(4, 20, 3, 10), section = test},
-			new Thread{author = Lorem.Email() , name = Lorem.Words(2,5), post = LoremNET.Lorem.Paragraph(4, 20, 3, 10), section = test}
-		};
+		var threads = new List<Thread>();
+		var rnd = new Random();
+
+		foreach (var i in Enumerable.Range(0, 5))
+		{
+			var test = Sections.ToList().Random();
+			threads.Add(new Thread{author = Lorem.Email() , name = Lorem.Words(2,5), post = LoremNET.Lorem.Paragraph(4, 20, 3, 10), section = test});
+		}
 
 		Threads.AddRange(threads);
 		SaveChanges();
 	}
 
 	public void populatePosts() {
-		var test = Threads.OrderBy(r => Guid.NewGuid()).Take(1).ToList().First(); //not random?
+		var test = Threads.ToList().Random();
+		var sections = new List<Post>();
 
-		var sections = new Post[] {
-			new Post{author = Lorem.Email(), post = LoremNET.Lorem.Paragraph(4, 20, 3, 10), thread = test},
-		};
+		foreach(var i in Enumerable.Range(0, 20)) {
+			sections.Add(new Post{author = Lorem.Email(), post = LoremNET.Lorem.Paragraph(4, 20, 3, 10), thread = test});
+		}
 
 		Posts.AddRange(sections);
 		SaveChanges();

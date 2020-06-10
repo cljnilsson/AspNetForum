@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "8BBTGY0Zwu+9DVfzFhI2EHAKCcRqUMFyLvQpLOHT3COS5F8BTA91y3EQT4M91EkMnXo94f+iNqQDlZ2wmzH3fw==",
+  "dgSpecHash": "iMUoLYs5LCWqSRUe7biMdBXBG5Ogry0GnuvVlgMy/Q34hy4TeW2f94wzysmlZWsd+cutEt4YrvgWQpyNeTCL/g==",
   "success": true,
   "projectFilePath": "G:\\Personal Projects\\aspnetcoreapp\\aspnetcoreapp.csproj",
   "expectedPackageFiles": [
@@ -127,16 +127,5 @@
     "C:\\Users\\zkall\\.nuget\\packages\\system.xml.xpath\\4.0.1\\system.xml.xpath.4.0.1.nupkg.sha512",
     "C:\\Users\\zkall\\.nuget\\packages\\system.xml.xpath.xmldocument\\4.0.1\\system.xml.xpath.xmldocument.4.0.1.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'Lorem.NET 1.0.6' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework '.NETCoreApp,Version=v3.1'. This package may not be fully compatible with your project.",
-      "libraryId": "Lorem.NET",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v3.1"
-      ]
-    }
-  ]
+  "logs": []
 }

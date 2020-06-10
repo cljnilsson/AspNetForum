@@ -9,5 +9,6 @@ namespace Model
 		public string name { get; set; }
 		public string post { get; set; }
 		public Section section { get; set; }
+		public int views {get; set; }
 	}
 }
