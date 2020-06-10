@@ -16,10 +16,20 @@ namespace aspnetcoreapp
 
 			using( var db = new DB()) {
 				db.Database.EnsureCreated();
+
 				if(!db.Sections.Any()) {
-					db.populate();
+					db.populateSections();
+				}
+
+				if(!db.Threads.Any()) {
+					db.populateThreads();
+				}
+
+				if(!db.Posts.Any()) {
+					db.populatePosts();
 				}
 			}
+
             CreateHostBuilder(args).Build().Run();
         }
 

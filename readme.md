@@ -9,3 +9,10 @@ Make sure you have a mysql instance running locally with username root and empty
 * jquery
 * Bootstrap 4
 * mysql
+* LoremNET
+
+### Features
+* Automatic DB creation
+* Automatic DB demo data generation
+* CRUD threads
+* CRUD users

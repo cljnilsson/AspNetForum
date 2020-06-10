@@ -1,4 +1,28 @@
-@page "/section/{x}"
+@page "/section/{sec:alpha}"
 @model SectionModel
-
-<p>@RouteData.Values["x"] section!</p>
+<div class="row">
+	<table class="table">
+		<thead>
+			<tr>
+				<th><h3>@RouteData.Values["sec"]</h3></th>
+				<th class="text-center">Comments</th>
+				<th class="text-center">Views</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach(var t in Model.threads)
+			{
+				<tr class="thread">
+					<th class="align-middle"><a href="/section/@RouteData.Values["sec"]/@t.id">@t.name</a></th>
+					<td class="text-center align-middle">0</td>
+					<td class="text-center align-middle">0</td>
+					<td class="text-right">
+						<small class="user">Admin</small><br>
+						<small>yesterday 12:00</small>
+					</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+</div>

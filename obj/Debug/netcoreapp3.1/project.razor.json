@@ -20521,13 +20521,13 @@
   "RootNamespace": "aspnetcoreapp",
   "Documents": [
     {
-      "FilePath": "g:\\Personal Projects\\aspnetcoreapp\\Pages\\_ViewImports.cshtml",
-      "TargetPath": "Pages\\_ViewImports.cshtml",
+      "FilePath": "g:\\Personal Projects\\aspnetcoreapp\\Pages\\section\\thread.cshtml",
+      "TargetPath": "Pages\\section\\thread.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "g:\\Personal Projects\\aspnetcoreapp\\Pages\\Privacy.cshtml",
-      "TargetPath": "Pages\\Privacy.cshtml",
+      "FilePath": "g:\\Personal Projects\\aspnetcoreapp\\Pages\\_ViewImports.cshtml",
+      "TargetPath": "Pages\\_ViewImports.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -20536,18 +20536,13 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "g:\\Personal Projects\\aspnetcoreapp\\Pages\\test\\index.cshtml",
-      "TargetPath": "Pages\\test\\index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "g:\\Personal Projects\\aspnetcoreapp\\Pages\\Error.cshtml",
-      "TargetPath": "Pages\\Error.cshtml",
-      "FileKind": "mvc"
-    },
-    {
       "FilePath": "g:\\Personal Projects\\aspnetcoreapp\\Pages\\Shared\\_Layout.cshtml",
       "TargetPath": "Pages\\Shared\\_Layout.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\Personal Projects\\aspnetcoreapp\\Pages\\section\\index.cshtml",
+      "TargetPath": "Pages\\section\\index.cshtml",
       "FileKind": "mvc"
     },
     {

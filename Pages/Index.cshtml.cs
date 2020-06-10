@@ -12,9 +12,7 @@ namespace aspnetcoreapp.Pages
 {
     public class IndexModel : PageModel
     {
-        private readonly ILogger<IndexModel> _logger;
-		private readonly DB test;
-		
+        private readonly ILogger<IndexModel> _logger;		
 		public List<Section> baba;
 
         public IndexModel(ILogger<IndexModel> logger)

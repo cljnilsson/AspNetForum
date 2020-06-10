@@ -6,18 +6,23 @@
 	color: white;
 }
 
+nav {
+	background-color: rgba(0,0,0,.7);
+	border-bottom: 1px solid #00b365;
+}
+
 h3 {
 	margin-bottom: 0;
 }
 
 h3 a {
-	color: #00b365
+	color: #00b365;
 }
 
 .container {
 	background-color: #18171c;
 	border-style: solid;
-	border-color: #00b365;
+	border-color: rgb(0, 179, 101);
 }
 
 .section {
@@ -26,10 +31,36 @@ h3 a {
 	text-align: left;
 }
 
+.avatar {
+	width: 100px;
+	height: 100px;
+}
+
+.user {
+	color: #3490dc;
+}
+
+.thread:hover {
+	background: linear-gradient(90deg,rgba(0, 179, 101,.9),rgba(44,44,53,.5));
+}
+
+.threadHeader {
+	border-bottom: 3px solid #00b365;
+}
+
+.post {
+	border-top: 2px solid #00b365;
+}
+
 .section:hover{
 	background-color: rgba(44,44,53,.9);
 }
 .sectionIcon {
 	width: 60px;
 	height: 60px;
+}
+
+#logo {
+	width: 300px;
+	height: 75px;
 }

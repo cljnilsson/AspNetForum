@@ -9,12 +9,36 @@
 
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+	<link rel="stylesheet" href="~/css/bootstrap_override.css" />
+
 </head>
 <body>
-    <header>
-        <nav class="navbar mb-3">
+    <header class="pb-3">
+        <nav class="navbar navbar-expand-md">
+			<div class="container-fluid" id="navbar-container">
+				<a class="navbar-brand" href="/">
+					<img id="logo" class="img-fluid" src="~/images/logo.png" alt="Navigation bar brand logo">
+				</a>
 
-        </nav>
+				<div class="navbar-content">
+					<div class="row">
+						<div class="col">
+							<button class="btn btn-outline-primary">Login</button>
+						</div>
+						<div class="col">
+							<button class="btn btn-outline-primary">Register</button>
+						</div>
+					</div>
+				</div>
+
+				<div class="input-group mb-3">
+					<input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
+					<div class="input-group-append">
+						<button class="btn btn-outline-secondary" type="button">Button</button>
+					</div>
+				</div>
+			</div>
+		</nav>
     </header>
     <div class="container">
         <main role="main" class="pb-3">

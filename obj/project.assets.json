@@ -65,6 +65,15 @@
           "lib/netstandard2.0/K4os.Hash.xxHash.dll": {}
         }
       },
+      "Lorem.NET/1.0.6": {
+        "type": "package",
+        "compile": {
+          "lib/net40/LoremNET.dll": {}
+        },
+        "runtime": {
+          "lib/net40/LoremNET.dll": {}
+        }
+      },
       "Microsoft.Bcl.AsyncInterfaces/1.1.0": {
         "type": "package",
         "compile": {
@@ -2013,6 +2022,18 @@
         "lib/netstandard1.6/K4os.Hash.xxHash.xml",
         "lib/netstandard2.0/K4os.Hash.xxHash.dll",
         "lib/netstandard2.0/K4os.Hash.xxHash.xml"
+      ]
+    },
+    "Lorem.NET/1.0.6": {
+      "sha512": "Td4zjQanubIpsTXX5YuafC7kgr7bcFbSewAbMuHdyIddkssUQ1Bc0o846Fr4WybZ2y9GRI9RLej6VBPZAHGwOw==",
+      "type": "package",
+      "path": "lorem.net/1.0.6",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net40/LoremNET.dll",
+        "lorem.net.1.0.6.nupkg.sha512",
+        "lorem.net.nuspec"
       ]
     },
     "Microsoft.Bcl.AsyncInterfaces/1.1.0": {
@@ -6579,6 +6600,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
+      "Lorem.NET >= 1.0.6",
       "MySql.Data.EntityFrameworkCore >= 8.0.20"
     ]
   },
@@ -6619,6 +6641,10 @@
     "frameworks": {
       "netcoreapp3.1": {
         "dependencies": {
+          "Lorem.NET": {
+            "target": "Package",
+            "version": "[1.0.6, )"
+          },
           "MySql.Data.EntityFrameworkCore": {
             "target": "Package",
             "version": "[8.0.20, )"
@@ -6645,5 +6671,17 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Lorem.NET 1.0.6' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework '.NETCoreApp,Version=v3.1'. This package may not be fully compatible with your project.",
+      "libraryId": "Lorem.NET",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v3.1"
+      ]
+    }
+  ]
 }

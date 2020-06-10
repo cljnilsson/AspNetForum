@@ -19,9 +19,7 @@ G:\Personal Projects\aspnetcoreapp\obj\Debug\netcoreapp3.1\aspnetcoreapp.Assembl
 G:\Personal Projects\aspnetcoreapp\obj\Debug\netcoreapp3.1\aspnetcoreapp.TagHelpers.input.cache
 G:\Personal Projects\aspnetcoreapp\obj\Debug\netcoreapp3.1\aspnetcoreapp.TagHelpers.output.cache
 G:\Personal Projects\aspnetcoreapp\obj\Debug\netcoreapp3.1\aspnetcoreapp.RazorCoreGenerate.cache
-G:\Personal Projects\aspnetcoreapp\obj\Debug\netcoreapp3.1\Razor\Pages\Error.cshtml.g.cs
 G:\Personal Projects\aspnetcoreapp\obj\Debug\netcoreapp3.1\Razor\Pages\Index.cshtml.g.cs
-G:\Personal Projects\aspnetcoreapp\obj\Debug\netcoreapp3.1\Razor\Pages\Privacy.cshtml.g.cs
 G:\Personal Projects\aspnetcoreapp\obj\Debug\netcoreapp3.1\Razor\Pages\Shared\_Layout.cshtml.g.cs
 G:\Personal Projects\aspnetcoreapp\obj\Debug\netcoreapp3.1\Razor\Pages\_ViewImports.cshtml.g.cs
 G:\Personal Projects\aspnetcoreapp\obj\Debug\netcoreapp3.1\Razor\Pages\_ViewStart.cshtml.g.cs
@@ -66,3 +64,5 @@ G:\Personal Projects\aspnetcoreapp\bin\Debug\netcoreapp3.1\System.Security.Crypt
 G:\Personal Projects\aspnetcoreapp\bin\Debug\netcoreapp3.1\System.Xml.XPath.XmlDocument.dll
 G:\Personal Projects\aspnetcoreapp\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 G:\Personal Projects\aspnetcoreapp\obj\Debug\netcoreapp3.1\Razor\Pages\section\index.cshtml.g.cs
+G:\Personal Projects\aspnetcoreapp\bin\Debug\netcoreapp3.1\LoremNET.dll
+G:\Personal Projects\aspnetcoreapp\obj\Debug\netcoreapp3.1\Razor\Pages\section\thread.cshtml.g.cs
