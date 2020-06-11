@@ -2,13 +2,12 @@
 @model ThreadModel
 <div class="threadHeader">
 	<h3>@Model.thread.name</h3>
-	<small>@Model.thread.author</small>
 </div>
 <div class="row">
 	<div class="col-sm-2 text-center">
-		<h5>@Model.thread.author</h5>
+		<h5 class="mt-2">@Model.thread.author</h5>
 		<small>Default Title</small>
-		<img class="avatar" src="~/images/default-avatar.png">
+		<img class="avatar mb-3" src="~/images/default-avatar.png">
 	</div>
 	<div class="col">
 		@Model.thread.post
@@ -20,9 +19,9 @@
 {
 	<div class="post row">
 		<div class="col-sm-2 text-center">
-			<h5>@p.author</h5>
+			<h5 class="mt-2">@p.author</h5>
 			<small>Default Title</small>
-			<img class="avatar" src="~/images/default-avatar.png">
+			<img class="avatar mb-3" src="~/images/default-avatar.png">
 		</div>
 		<div class="col">
 			<p>@p.post;</p>

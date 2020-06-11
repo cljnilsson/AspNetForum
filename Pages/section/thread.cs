@@ -14,5 +14,8 @@
 			var db = new DB();
 			thread = db.GetThread(id);
 			posts = db.GetPostsInThread(thread.id);
+
+			thread.views++;
+			db.SaveChanges();
         }
     }

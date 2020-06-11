@@ -60,10 +60,10 @@ public class DB : DbContext
 	}
 
 	public void populatePosts() {
-		var test = Threads.ToList().Random();
 		var sections = new List<Post>();
 
 		foreach(var i in Enumerable.Range(0, 20)) {
+			var test = Threads.ToList().Random();
 			sections.Add(new Post{author = Lorem.Email(), post = LoremNET.Lorem.Paragraph(4, 20, 3, 10), thread = test});
 		}
 

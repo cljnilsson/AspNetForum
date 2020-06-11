@@ -20521,6 +20521,11 @@
   "RootNamespace": "aspnetcoreapp",
   "Documents": [
     {
+      "FilePath": "g:\\Personal Projects\\aspnetcoreapp\\Pages\\Shared\\loginmodal.cshtml",
+      "TargetPath": "Pages\\Shared\\loginmodal.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "g:\\Personal Projects\\aspnetcoreapp\\Pages\\section\\thread.cshtml",
       "TargetPath": "Pages\\section\\thread.cshtml",
       "FileKind": "mvc"
@@ -20528,6 +20533,11 @@
     {
       "FilePath": "g:\\Personal Projects\\aspnetcoreapp\\Pages\\_ViewImports.cshtml",
       "TargetPath": "Pages\\_ViewImports.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\Personal Projects\\aspnetcoreapp\\Pages\\register\\index.cshtml",
+      "TargetPath": "Pages\\register\\index.cshtml",
       "FileKind": "mvc"
     },
     {

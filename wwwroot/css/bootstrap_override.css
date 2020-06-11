@@ -1,3 +1,8 @@
+.navbar {
+	padding-top: 0;
+	padding-bottom: 0;
+}
+
 .table {
 	color: white;
 }
@@ -19,4 +24,13 @@
     color: white;
 	border-color: rgba(0, 221, 125, .5);
 	background-color: rgba(0, 221, 125, .5);
+}
+
+.modal-content {
+	background-color: #18171c;
+}
+
+.modal-header {
+	background-color: rgba(0, 221, 125, .5);
+	border-bottom: none;
 }

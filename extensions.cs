@@ -6,5 +6,9 @@ namespace Extensions {
 		public static T Random<T>(this List<T> l) {
 			return l[rng.Next(l.Count)];
 		}
+
+		public static T Last<T>(this List<T> l) {
+			return l[l.Count - 1];
+		}
 	}
 }

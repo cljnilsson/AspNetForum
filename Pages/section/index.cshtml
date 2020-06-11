@@ -18,8 +18,8 @@
 					<td class="text-center align-middle">@Model.comments[t]</td>
 					<td class="text-center align-middle">@t.views</td>
 					<td class="text-right">
-						<small class="user">Admin</small><br>
-						<small>yesterday 12:00</small>
+						<small class="user">@t.latestSource</small><br>
+						<small>@t.latest</small>
 					</td>
 				</tr>
 			}

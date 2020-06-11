@@ -2,6 +2,7 @@
 	using System.Collections.Generic;
 	using Microsoft.AspNetCore.Mvc.RazorPages;
 	using Microsoft.Extensions.Logging;
+	using Extensions;
 
 	using Model;
 
@@ -14,8 +15,19 @@
 			var db = new DB();
 			threads = db.GetThreadsFromSection(sec);
 			foreach(var t in threads) {
-				var c = db.GetPostsInThread(t.id).Count;
+				var posts 	= db.GetPostsInThread(t.id);
+				var c 		= posts.Count;
+
 				comments.Add(t, c > 0 ? c : 0);
+
+				if(c == 0) {
+					t.latest = t.date;
+					t.latestSource = t.author;
+				} else {
+					var last = posts.Last();
+					t.latest = last.date;
+					t.latestSource = last.author;
+				}
 			}
         }
     }
