@@ -21,10 +21,14 @@
 						<h3><a href="/section/@s.Name">@s.Name</a></h3>
 						<span>@s.description</span>
 					</div>
-					<div class="col text-right">
-						<span>Latest: Dank memes</span>
-						<br>
-						<small>Admin, yesterday 12:00</small>
+					<div class="col-md-4 text-right">
+						@{
+							if(s.latest > DateTime.MinValue) {
+								<span>Latest: @s.latestThread</span>
+								<br>
+								<small>@s.latestSource, @s.latest</small>
+							}
+						}
 					</div>
 				</div>
 			</div>

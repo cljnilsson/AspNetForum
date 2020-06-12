@@ -59,7 +59,7 @@ public class DB : DbContext
 		var threads = new List<Thread>();
 		var rnd = new Random();
 
-		foreach (var i in Enumerable.Range(0, 5))
+		foreach (var i in Enumerable.Range(0, 20))
 		{
 			var test = Sections.ToList().Random();
 			threads.Add(new Thread{author = Lorem.Email() , name = Lorem.Words(2,5), post = LoremNET.Lorem.Paragraph(4, 20, 3, 10), section = test});
@@ -72,7 +72,7 @@ public class DB : DbContext
 	public void populatePosts() {
 		var sections = new List<Post>();
 
-		foreach(var i in Enumerable.Range(0, 50)) {
+		foreach(var i in Enumerable.Range(0, 70)) {
 			var test = Threads.ToList().Random();
 			sections.Add(new Post{author = Lorem.Email(), post = LoremNET.Lorem.Paragraph(4, 20, 3, 10), thread = test});
 		}

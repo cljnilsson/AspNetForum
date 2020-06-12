@@ -22,7 +22,34 @@ namespace aspnetcoreapp.Pages
 
         public void OnGet()
         {
-			baba = new DB().GetAllSections();
+			var db = new DB();
+			baba = db.GetAllSections();
+
+			// Finds latest post in all threads
+			foreach(var s in baba) {
+				var threads = db.GetThreadsFromSection(s.Name);
+				if(threads.Count > 0) {
+					foreach(var t in threads) {
+						var posts 	= db.GetPostsInThread(t.id);
+						var c 		= posts.Count;
+
+						if(c == 0) {
+							t.latest = t.date;
+							t.latestSource = t.author;
+						} else {
+							var last = posts.Last();
+							t.latest = last.date;
+							t.latestSource = last.author;
+						}
+					}
+
+					threads = threads.OrderBy(t => t.latest).ToList();
+					
+					s.latest = threads.FirstOrDefault().latest;
+					s.latestSource = threads.FirstOrDefault().latestSource;
+					s.latestThread = threads.FirstOrDefault().name;
+				}
+			}
         }
     }
 }
