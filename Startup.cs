@@ -24,6 +24,7 @@ namespace aspnetcoreapp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
+			services.AddSession();
 			//services.AddTransient<DB>(_ => new DB(Configuration.GetConnectionString("DB")));
         }
 
@@ -45,6 +46,7 @@ namespace aspnetcoreapp
             app.UseStaticFiles();
 
             app.UseRouting();
+			app.UseSession();
 
             app.UseAuthorization();
 

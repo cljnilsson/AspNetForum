@@ -23,13 +23,23 @@
 
 				<div class="navbar-content">
 					<div class="row">
-						<div class="col">
-							<button class="btn btn-outline-primary" data-toggle="modal" data-target="#loginModal">Login</button>
-							<partial name="loginmodal"/>
-						</div>
-						<div class="col">
-							<a href="/register"><button class="btn btn-outline-primary" data-toggle="modal" data-target="#registerModal">Register</button></a>
-						</div>
+						@{
+							var user = new Byte[20];
+							var exists = Context.Session.TryGetValue("username", out user);
+							if(exists) {
+								<div class="col">
+									<button class="btn btn-outline-primary">Logout</button>
+								</div>
+							} else {
+								<div class="col">
+									<button class="btn btn-outline-primary" data-toggle="modal" data-target="#loginModal">Login</button>
+									<partial name="loginmodal"/>
+								</div>
+								<div class="col">
+									<a href="/register"><button class="btn btn-outline-primary" data-toggle="modal" data-target="#registerModal">Register</button></a>
+								</div>
+							}
+						}
 					</div>
 				</div>
 

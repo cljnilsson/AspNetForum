@@ -5,8 +5,10 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using LoremNET;
-using Microsoft.Extensions.Configuration;
+using System.Security.Cryptography;
+using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using Extensions;
+using Hash;
 
 public class DB : DbContext
   {
@@ -15,6 +17,8 @@ public class DB : DbContext
 	public DbSet<Section> Sections {get; set;}
 	public DbSet<Thread> Threads {get; set;}
 	public DbSet<Post> Posts {get; set;}
+	public DbSet<User> Users {get; set;}
+
 
 	protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 	{
@@ -34,10 +38,16 @@ public class DB : DbContext
 		}
 
 		var sections = new Section[] {
-			new Section{Name = "Gaming" 	, Image = "gaming.png" 	, description = "Talk about any game"},
-			new Section{Name = "News"   	, Image = "news.png"   	, description = "Post news here and share your views on them!"},
-			new Section{Name = "Software"   , Image = "wrench.png"  , description = "Discuess software here!"},
-			new Section{Name = "Hardware"   , Image = "cogs.jpg"   	, description = "Post about anything hardware"}
+			new Section{Name = "Gaming" 		, Image = "gaming.png" 		, description = "Talk about any game"},
+			new Section{Name = "News"   		, Image = "news.png"   		, description = "Post news here and share your views on them!"},
+			new Section{Name = "Software"  		, Image = "wrench.png"  	, description = "Discuess software here!"},
+			new Section{Name = "Hardware"  	 	, Image = "cogs.png"   		, description = "Post about anything hardware"},
+			new Section{Name = "Nature"   		, Image = "nature.png"   	, description = "Post beutriful pictures of nature and talk about locations you would like to visit"},
+			new Section{Name = "Craftmanship"	, Image = "crafting.png"   	, description = "How off your creations and build projects here, or ask for advice"},
+			new Section{Name = "Art"			, Image = "art.png"   		, description = "Drawings, textures or similar can be shared here and discuessed here!"},
+			new Section{Name = "Music"			, Image = "music.png"   	, description = "Talk about music, or share your own"},
+			new Section{Name = "Books"   		, Image = "books.png"   	, description = "Share your thoughts about books you've read, or are writing"},
+			new Section{Name = "Off Topic"		, Image = "offtopic.png"   	, description = "Talk about anything random here"}
 		};
 
 		Sections.AddRange(sections);
@@ -62,7 +72,7 @@ public class DB : DbContext
 	public void populatePosts() {
 		var sections = new List<Post>();
 
-		foreach(var i in Enumerable.Range(0, 20)) {
+		foreach(var i in Enumerable.Range(0, 50)) {
 			var test = Threads.ToList().Random();
 			sections.Add(new Post{author = Lorem.Email(), post = LoremNET.Lorem.Paragraph(4, 20, 3, 10), thread = test});
 		}
@@ -93,5 +103,21 @@ public class DB : DbContext
 
 	public List<Post> GetPostsInThread(int id) {
 		return Posts.Where(t => t.thread == GetThread(id)).ToList();
+	}
+
+	public void CreateUser(string username, string password, string email) {
+		string hashed = Hash.SecurePasswordHasher.Hash(password);
+		Users.Add(new User{Email = email, Username = username, Password = hashed});
+		SaveChanges();
+	}
+
+	public bool Login(string username, string password) {
+		var user = Users.Where(u => u.Username == username).FirstOrDefault();
+		if(user != null && Hash.SecurePasswordHasher.Verify(password, user.Password)) {
+			return true;
+		} else {
+			return false;
+		}
+
 	}
 }

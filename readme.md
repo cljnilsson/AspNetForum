@@ -4,12 +4,18 @@ A relatively simple forum for learning purposes.
 dotnet watch run
 Make sure you have a mysql instance running locally with username root and empty password, otherwise configure the connection string in db.cs
 
+### Used Languages
+* C#
+* HTML
+* CSS
+* Javascript
+  
 ### Dependencies
 * Asp Net Core
 * jquery
 * Bootstrap 4
 * Font-Awesome
-* mysql
+* Mysql
 * LoremNET
 
 ### Features
@@ -24,8 +30,8 @@ Make sure you have a mysql instance running locally with username root and empty
 
 
 ### Todo
-* Login system
-* Registration
+* Login system (Under Construction)
+* Registration (Under Construction)
 * User rank system
 
 ### Unconfirmed Features

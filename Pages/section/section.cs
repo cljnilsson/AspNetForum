@@ -1,6 +1,7 @@
     using System;
 	using System.Collections.Generic;
 	using Microsoft.AspNetCore.Mvc.RazorPages;
+	using System.Linq;
 	using Microsoft.Extensions.Logging;
 	using Extensions;
 
@@ -29,5 +30,7 @@
 					t.latestSource = last.author;
 				}
 			}
+
+			threads = threads.OrderBy(t => t.latest).ToList();
         }
     }

@@ -18,8 +18,17 @@ namespace aspnetcoreapp.Pages
         }
 
 		public void OnPost() {
-			System.Console.WriteLine("user: " + Request.Form["username"]);
-			System.Console.WriteLine("user: " + Request.Form["email"]);
+			System.Console.WriteLine("TRYING TO MAKE USER");
+			var username 	= Request.Form["username"];
+			var password 	= Request.Form["password"];
+			var cpassword 	= Request.Form["cpassword"];
+			var email 		= Request.Form["email"];
+
+			if(password == cpassword) {
+				new DB().CreateUser(username, password, email);
+			} else {
+				// Return error somehow
+			}
 		}
     }
 }
