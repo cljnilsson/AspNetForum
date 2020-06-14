@@ -19,6 +19,14 @@ h3 a {
 	color: #00b365;
 }
 
+a {
+	color: #00b365;
+}
+
+a:hover {
+	color: white;
+}
+
 .container {
 	background-color: #18171c;
 	border-style: solid;
@@ -44,6 +52,10 @@ h3 a {
 	background: linear-gradient(90deg,rgba(0, 179, 101,.9),rgba(44,44,53,.5));
 }
 
+.thread:hover a:not(:hover) {
+	color: white;
+}
+
 .threadHeader {
 	border-bottom: 3px solid #00b365;
 }
@@ -63,4 +75,22 @@ h3 a {
 #logo {
 	width: 300px;
 	height: 75px;
+}
+
+#subnavLeft, #subnavRight {
+	background-image: url("../images/nav.png");
+	background-repeat: no-repeat;
+	background-size: cover;
+	max-width: 250px;
+	height: 40px;
+}
+
+#subnavRight {
+	background-image: url("../images/nav2.png");
+	max-width: 200px;
+}
+
+#log {
+	margin-left: 1rem;
+	margin-right: 1rem;
 }
