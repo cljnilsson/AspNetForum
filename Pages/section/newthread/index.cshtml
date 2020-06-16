@@ -1,27 +1,46 @@
-@page
+@page "/section/{sec:alpha}/newthread"
+@model ThreadMaker
+@using Microsoft.AspNetCore.Http;
 
-<script src="//cdn.quilljs.com/1.3.6/quill.js"></script>
-<script src="//cdn.quilljs.com/1.3.6/quill.min.js"></script>
+@{
+	var user = new Byte[20];
+	var exists = HttpContext.Session.TryGetValue("username", out user);
 
-<link href="//cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+	if(exists) {
+		<form method="post" id="threadform">
+			<input type="text" class="form-control mt-3 threadheader" placeholder="Thread Name" name="name">
 
-<input type="text" class="form-control mt-3 threadheader" placeholder="Thread Name">
-<div id="editor-container" style="height: 300px">
+			<div id="editor-container" style="height: 300px">
 
-</div>
+			</div>
+			
+			<textarea name="text" style="display:none" id="hiddenArea"></textarea>
+			<input name="section" style="display:none"/ value="@RouteData.Values["sec"]">
 
-<button class="btn btn-outline-light mt-3">Create Thread</button>
+			<button type="submit" id="postthread" class="btn btn-outline-light mt-3">Create Thread</button>
+		</form>
 
-<script>
-	let options = {
-		modules: {
-			toolbar: [
-				[{ header: [1, 2, false] }],
-				['bold', 'italic', 'underline'],
-				['image', 'code-block']
-			]
-		},
-		theme: 'snow'  // or 'bubble'
+		<script>
+			let options = {
+				modules: {
+					toolbar: [
+						[{ header: [1, 2, false] }],
+						['bold', 'italic', 'underline'],
+						['image', 'code-block']
+					]
+				},
+				theme: 'snow'  // or 'bubble'
+			};
+
+			var quill = new Quill('#editor-container', options);
+
+			$("#threadform").on("submit", function(){
+				$("#hiddenArea").val($("#editor-container").html());
+			});
+		</script>
+	} else {
+		<div class="text-center">
+			<h3>You need you log in to make a thread</h3>
+		</div>
 	}
-	var quill = new Quill('#editor-container', options)
-</script>
+}

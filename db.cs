@@ -118,6 +118,11 @@ public class DB : DbContext
 		} else {
 			return false;
 		}
+	}
 
+	public void makeThread(string thread, string post, string user, string section) {
+		var s = Sections.Where(s => s.Name == section).FirstOrDefault();
+		Threads.Add(new Thread{name = thread, post = post, author = user, section = s});
+		SaveChanges();
 	}
 }

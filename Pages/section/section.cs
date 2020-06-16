@@ -31,6 +31,6 @@
 				}
 			}
 
-			threads = threads.OrderBy(t => t.latest).ToList();
+			threads = threads.OrderByDescending(t => t.latest).ToList();
         }
     }

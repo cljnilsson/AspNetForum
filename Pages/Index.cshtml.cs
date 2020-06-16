@@ -43,7 +43,7 @@ namespace aspnetcoreapp.Pages
 						}
 					}
 
-					threads = threads.OrderBy(t => t.latest).ToList();
+					threads = threads.OrderByDescending(t => t.latest).ToList();
 					
 					s.latest = threads.FirstOrDefault().latest;
 					s.latestSource = threads.FirstOrDefault().latestSource;

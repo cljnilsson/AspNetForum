@@ -17,6 +17,7 @@ Make sure you have a mysql instance running locally with username root and empty
 * Font-Awesome
 * Mysql
 * LoremNET
+* QuillJs
 
 ### Features
 * Automatic DB creation
