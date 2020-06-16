@@ -69,3 +69,4 @@ G:\Personal Projects\aspnetcoreapp\obj\Debug\netcoreapp3.1\Razor\Pages\section\t
 G:\Personal Projects\aspnetcoreapp\obj\Debug\netcoreapp3.1\Razor\Pages\Shared\loginmodal.cshtml.g.cs
 G:\Personal Projects\aspnetcoreapp\obj\Debug\netcoreapp3.1\Razor\Pages\register\index.cshtml.g.cs
 G:\Personal Projects\aspnetcoreapp\obj\Debug\netcoreapp3.1\Razor\Pages\login\index.cshtml.g.cs
+G:\Personal Projects\aspnetcoreapp\obj\Debug\netcoreapp3.1\Razor\Pages\section\newthread\index.cshtml.g.cs

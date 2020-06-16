@@ -72,6 +72,33 @@ a:hover {
 	height: 60px;
 }
 
+.thread {
+	color: #00b365;
+}
+
+.threadheader {
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
+.ql-toolbar .ql-stroke {
+    fill: none;
+    stroke: #fff !important;
+}
+
+.ql-toolbar .ql-fill {
+    fill: #fff !important;
+    stroke: none;
+}
+
+.ql-toolbar .ql-picker {
+    color: #fff !important;
+}
+
+.ql-toolbar .ql-picker-item {
+	color: #444 !important;
+}
+
 #logo {
 	width: 300px;
 	height: 75px;

@@ -24,9 +24,9 @@
 					<div class="col-md-4 text-right">
 						@{
 							if(s.latest > DateTime.MinValue) {
-								<span>Latest: @s.latestThread</span>
+								<span class="thread">@s.latestThread</span>
 								<br>
-								<small>@s.latestSource, @s.latest</small>
+								<small class="user">@s.latestSource</small><small>, @s.latest</small>
 							}
 						}
 					</div>
