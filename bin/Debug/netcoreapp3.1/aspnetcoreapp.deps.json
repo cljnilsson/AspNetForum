@@ -24,8 +24,10 @@
     ".NETCoreApp,Version=v3.1": {
       "aspnetcoreapp/1.0.0": {
         "dependencies": {
+          "Json.Net": "1.0.22",
           "Lorem.NET": "1.0.6",
           "MySql.Data.EntityFrameworkCore": "8.0.20",
+          "Newtonsoft.Json": "12.0.3",
           "Microsoft.AspNetCore.Antiforgery": "3.1.0.0",
           "Microsoft.AspNetCore.Authentication.Abstractions": "3.1.0.0",
           "Microsoft.AspNetCore.Authentication.Cookies": "3.1.0.0",
@@ -333,6 +335,17 @@
         },
         "compile": {
           "lib/netstandard1.0/Google.Protobuf.dll": {}
+        }
+      },
+      "Json.Net/1.0.22": {
+        "runtime": {
+          "lib/netstandard2.0/Json.Net.dll": {
+            "assemblyVersion": "1.0.22.1",
+            "fileVersion": "1.0.22.1"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/Json.Net.dll": {}
         }
       },
       "K4os.Compression.LZ4/1.1.11": {
@@ -741,6 +754,17 @@
           "System.Threading.Timer": "4.3.0",
           "System.Xml.ReaderWriter": "4.3.0",
           "System.Xml.XDocument": "4.3.0"
+        }
+      },
+      "Newtonsoft.Json/12.0.3": {
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+            "assemblyVersion": "12.0.0.0",
+            "fileVersion": "12.0.3.23909"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
         }
       },
       "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {},
@@ -3220,6 +3244,13 @@
       "path": "google.protobuf/3.6.1",
       "hashPath": "google.protobuf.3.6.1.nupkg.sha512"
     },
+    "Json.Net/1.0.22": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-y5xI87/heGiNZ859fsTORkoiB93qEW/rwLtxvJBAeQIoCCPoOLXzZiMx/HHg4WnR9UhcMH6Ec6m76jN+qqZVSg==",
+      "path": "json.net/1.0.22",
+      "hashPath": "json.net.1.0.22.nupkg.sha512"
+    },
     "K4os.Compression.LZ4/1.1.11": {
       "type": "package",
       "serviceable": true,
@@ -3422,6 +3453,13 @@
       "sha512": "sha512-WcSp3+vP+yHNgS8EV5J7pZ9IRpeDuARBPN28by8zqff1wJQXm26PVU8L3/fYLBJVU7BtDyqNVWq2KlCVvSSR4A==",
       "path": "netstandard.library/1.6.1",
       "hashPath": "netstandard.library.1.6.1.nupkg.sha512"
+    },
+    "Newtonsoft.Json/12.0.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-6mgjfnRB4jKMlzHSl+VD+oUc1IebOZabkbyWj2RiTgWwYPPuaK1H97G1sHqGwPlS5npiF5Q0OrxN1wni2n5QWg==",
+      "path": "newtonsoft.json/12.0.3",
+      "hashPath": "newtonsoft.json.12.0.3.nupkg.sha512"
     },
     "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
       "type": "package",

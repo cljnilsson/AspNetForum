@@ -28,6 +28,15 @@
           "lib/netstandard1.0/Google.Protobuf.dll": {}
         }
       },
+      "Json.Net/1.0.22": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Json.Net.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Json.Net.dll": {}
+        }
+      },
       "K4os.Compression.LZ4/1.1.11": {
         "type": "package",
         "dependencies": {
@@ -433,6 +442,15 @@
           "System.Threading.Timer": "4.3.0",
           "System.Xml.ReaderWriter": "4.3.0",
           "System.Xml.XDocument": "4.3.0"
+        }
+      },
+      "Newtonsoft.Json/12.0.3": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
         }
       },
       "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
@@ -1967,6 +1985,18 @@
         "lib/netstandard1.0/Google.Protobuf.xml"
       ]
     },
+    "Json.Net/1.0.22": {
+      "sha512": "y5xI87/heGiNZ859fsTORkoiB93qEW/rwLtxvJBAeQIoCCPoOLXzZiMx/HHg4WnR9UhcMH6Ec6m76jN+qqZVSg==",
+      "type": "package",
+      "path": "json.net/1.0.22",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "json.net.1.0.22.nupkg.sha512",
+        "json.net.nuspec",
+        "lib/netstandard2.0/Json.Net.dll"
+      ]
+    },
     "K4os.Compression.LZ4/1.1.11": {
       "sha512": "RNvJw0UGkedPhCqVBNIogtfQebY+bQt0PN7xDbVe5LWLra0ZEqPfjPSl7iStj3rgDnkqkkTTpm+vCX3hU1qKmA==",
       "type": "package",
@@ -2527,6 +2557,37 @@
         "dotnet_library_license.txt",
         "netstandard.library.1.6.1.nupkg.sha512",
         "netstandard.library.nuspec"
+      ]
+    },
+    "Newtonsoft.Json/12.0.3": {
+      "sha512": "6mgjfnRB4jKMlzHSl+VD+oUc1IebOZabkbyWj2RiTgWwYPPuaK1H97G1sHqGwPlS5npiF5Q0OrxN1wni2n5QWg==",
+      "type": "package",
+      "path": "newtonsoft.json/12.0.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.md",
+        "lib/net20/Newtonsoft.Json.dll",
+        "lib/net20/Newtonsoft.Json.xml",
+        "lib/net35/Newtonsoft.Json.dll",
+        "lib/net35/Newtonsoft.Json.xml",
+        "lib/net40/Newtonsoft.Json.dll",
+        "lib/net40/Newtonsoft.Json.xml",
+        "lib/net45/Newtonsoft.Json.dll",
+        "lib/net45/Newtonsoft.Json.xml",
+        "lib/netstandard1.0/Newtonsoft.Json.dll",
+        "lib/netstandard1.0/Newtonsoft.Json.xml",
+        "lib/netstandard1.3/Newtonsoft.Json.dll",
+        "lib/netstandard1.3/Newtonsoft.Json.xml",
+        "lib/netstandard2.0/Newtonsoft.Json.dll",
+        "lib/netstandard2.0/Newtonsoft.Json.xml",
+        "lib/portable-net40+sl5+win8+wp8+wpa81/Newtonsoft.Json.dll",
+        "lib/portable-net40+sl5+win8+wp8+wpa81/Newtonsoft.Json.xml",
+        "lib/portable-net45+win8+wp8+wpa81/Newtonsoft.Json.dll",
+        "lib/portable-net45+win8+wp8+wpa81/Newtonsoft.Json.xml",
+        "newtonsoft.json.12.0.3.nupkg.sha512",
+        "newtonsoft.json.nuspec",
+        "packageIcon.png"
       ]
     },
     "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
@@ -6600,8 +6661,10 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
+      "Json.Net >= 1.0.22",
       "Lorem.NET >= 1.0.6",
-      "MySql.Data.EntityFrameworkCore >= 8.0.20"
+      "MySql.Data.EntityFrameworkCore >= 8.0.20",
+      "Newtonsoft.Json >= 12.0.3"
     ]
   },
   "packageFolders": {
@@ -6610,11 +6673,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "G:\\Personal Projects\\aspnetcoreapp\\aspnetcoreapp.csproj",
+      "projectUniqueName": "g:\\Personal Projects\\aspnetcoreapp\\aspnetcoreapp.csproj",
       "projectName": "aspnetcoreapp",
-      "projectPath": "G:\\Personal Projects\\aspnetcoreapp\\aspnetcoreapp.csproj",
+      "projectPath": "g:\\Personal Projects\\aspnetcoreapp\\aspnetcoreapp.csproj",
       "packagesPath": "C:\\Users\\zkall\\.nuget\\packages\\",
-      "outputPath": "G:\\Personal Projects\\aspnetcoreapp\\obj\\",
+      "outputPath": "g:\\Personal Projects\\aspnetcoreapp\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\zkall\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -6644,6 +6707,10 @@
     "frameworks": {
       "netcoreapp3.1": {
         "dependencies": {
+          "Json.Net": {
+            "target": "Package",
+            "version": "[1.0.22, )"
+          },
           "Lorem.NET": {
             "target": "Package",
             "version": "[1.0.6, )"
@@ -6651,6 +6718,10 @@
           "MySql.Data.EntityFrameworkCore": {
             "target": "Package",
             "version": "[8.0.20, )"
+          },
+          "Newtonsoft.Json": {
+            "target": "Package",
+            "version": "[12.0.3, )"
           }
         },
         "imports": [
