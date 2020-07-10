@@ -111,6 +111,10 @@ public class DB : DbContext
 		SaveChanges();
 	}
 
+	public bool UserExist(string username) {
+		return Users.Where(u => u.Username == username).ToList().Count > 0;
+	}
+
 	public bool Login(string username, string password) {
 		var user = Users.Where(u => u.Username == username).FirstOrDefault();
 		if(user != null && Hash.SecurePasswordHasher.Verify(password, user.Password)) {

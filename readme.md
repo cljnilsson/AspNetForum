@@ -1,5 +1,7 @@
 A relatively simple forum for learning purposes.
 
+![alt text](https://i.gyazo.com/d78b9d20829caf3b3d86c58b93384851.png)
+
 ### Start
 dotnet watch run
 Make sure you have a mysql instance running locally with username root and empty password, otherwise configure the connection string in db.cs

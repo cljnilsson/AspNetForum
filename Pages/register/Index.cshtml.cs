@@ -14,11 +14,6 @@ namespace aspnetcoreapp.Pages
 {
     public class RegModel : PageModel
     {
-        public void OnGet()
-        {
-			System.Console.WriteLine("WoW!zzz");
-        }
-
 		public async Task<IActionResult> OnPostAsync() {
 			System.Console.WriteLine("TRYING TO MAKE USER");
 			using (var reader = new StreamReader(Request.Body)) {
@@ -31,10 +26,13 @@ namespace aspnetcoreapp.Pages
 				var cpassword 	= data.GetValue("cpassword").ToString();
 				var email 		= data.GetValue("email").ToString();
 
-				// Add other checcks for unique username etc
+				var db = new DB();
 
-				if(password == cpassword) {
-					new DB().CreateUser(username, password, email);
+				// Could add other checks but I do not consider it a priority for now.
+				if(db.UserExist(username)) {
+					return Content("Username is already taken");
+				} else if(password == cpassword) {
+					db.CreateUser(username, password, email);
 					return Content("Success");
 				} else {
 					return Content("Passwords did not match");
