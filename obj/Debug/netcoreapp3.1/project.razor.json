@@ -20551,6 +20551,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "g:\\Personal Projects\\aspnetcoreapp\\Pages\\search\\index.cshtml",
+      "TargetPath": "Pages\\search\\index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "g:\\Personal Projects\\aspnetcoreapp\\Pages\\login\\index.cshtml",
       "TargetPath": "Pages\\login\\index.cshtml",
       "FileKind": "mvc"

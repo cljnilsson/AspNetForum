@@ -24,12 +24,12 @@
 				<a class="navbar-brand" href="/">
 					<img id="logo" class="img-fluid" src="~/images/logo.png" alt="Navigation bar brand logo">
 				</a>
-				<div class="input-group w-25">
-					<input type="text" class="form-control" placeholder=".....">
-					<div class="input-group-append">
-						<button class="btn btn-outline-primary" type="button"><i class="fas fa-search"></i> Search</button>
-					</div>
-				</div>
+					<form class="input-group w-25" action="/search">
+						<input type="text" name="q" class="form-control" placeholder=".....">
+						<div class="input-group-append">
+							<button class="btn btn-outline-primary" type="submit"><i class="fas fa-search"></i> Search</button>
+						</div>
+					</form>
 			</div>
 		</nav>
 		<div class="row no-gutters">

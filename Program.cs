@@ -14,7 +14,7 @@ namespace aspnetcoreapp
         public static void Main(string[] args)
         {
 
-			using( var db = new DB()) {
+			using(var db = new DB()) {
 				db.Database.EnsureCreated();
 
 				if(!db.Sections.Any()) {

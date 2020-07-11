@@ -1,0 +1,12 @@
+@page
+@model SearchModel
+
+@foreach(var p in Model.result)
+{
+	<h3>@p.thread.name</h3>
+	@p.post
+	<br>
+	<small class="user">@p.author</small>
+	<small>, @p.date</small>
+	<br><br>
+}

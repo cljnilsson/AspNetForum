@@ -25,11 +25,17 @@ public class DB : DbContext
    		optionsBuilder.UseMySQL("server=localhost;database=forum;uid=root;password=;"); //Fix this at some point, not good practice for security reasons
 	}
 
-     public Guid Random() 
-     { // to prove not used by our C# code... 
-         throw new NotImplementedException(); 
-     }
+	public List<Post> searchPosts(String q) {
+		var list = new List<Post>();
 
+		foreach(var p in Posts.Include(w => w.thread).ToList()) {
+			if(p.post.Contains(q)) {
+				list.Add(p);
+			}
+		}
+
+		return list;
+	}
 	public async void populateSections()
 	{
 		if (await Sections.AnyAsync())
@@ -72,7 +78,7 @@ public class DB : DbContext
 	public void populatePosts() {
 		var sections = new List<Post>();
 
-		foreach(var i in Enumerable.Range(0, 70)) {
+		foreach(var i in Enumerable.Range(0, 120)) {
 			var test = Threads.ToList().Random();
 			sections.Add(new Post{author = Lorem.Email(), post = LoremNET.Lorem.Paragraph(4, 20, 3, 10), thread = test});
 		}
