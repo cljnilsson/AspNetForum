@@ -35,11 +35,13 @@ namespace aspnetcoreapp.Pages
 
 			var username 	= Request.Form["username"];
 			var password 	= Request.Form["password"];
-
-			var correct = new DB().Login(username, password);
+			var db 			= new DB();
+			
+			var correct = db.Login(username, password);
 
 			if(correct) {
 				HttpContext.Session.SetString("username", username);
+				db.updateLastLogin(username);
 			}
 
 			return Redirect(Request.Headers["Referer"].ToString());

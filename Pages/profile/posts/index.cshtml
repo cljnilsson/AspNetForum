@@ -1,0 +1,16 @@
+@page "/profile/{user}/posts"
+@model PostsTrackerModel
+
+@foreach(var p in Model.posts)
+{
+	<div class="post row">
+		<div class="col-sm-2 text-center">
+			<h5 class="mt-2">@p.author</h5>
+			<small>Default Title</small>
+			<img class="avatar mb-3" src="~/images/default-avatar.png">
+		</div>
+		<div class="col">
+			@Html.Raw(p.post)
+		</div>
+	</div>
+}

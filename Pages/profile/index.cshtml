@@ -1,0 +1,46 @@
+@page "/profile/{user}"
+@model ProfileModel
+
+<div class="row mt-3">
+	<div class="col-sm-3">
+		<div class="text-center">
+			<img class="avatar" src="~/images/default-avatar.png">
+		</div>
+		<hr>
+		<div class="row">
+			<div class="col">
+				Posts:
+			</div>
+			<div class="col text-right">
+				@Model.owner.posts
+			</div>
+		</div>
+		<div class="row">
+			<div class="col">
+				Last Login:
+			</div>
+			<div class="col text-right">
+				@Model.owner.lastLogin.Year/@Model.owner.lastLogin.Month/@Model.owner.lastLogin.Day
+			</div>
+		</div>
+		<div class="row">
+			<div class="col">
+				Joined:
+			</div>
+			<div class="col text-right">
+				@Model.owner.created.Year/@Model.owner.created.Month/@Model.owner.created.Day
+			</div>
+		</div>
+		<a href="/profile/@Model.owner.Username/posts">Recent posts</a>
+	</div>
+	<div class="col">
+		<h3 class="user">@Model.owner.Username</h3>
+		@Model.owner.Rank
+		<hr>
+		<textarea class="w-100 form-control">Type something here</textarea>
+		<div class="text-right mt-1">
+			<button class="btn btn-outline-primary">post</button>
+		</div>
+		<br><br>
+	</div>
+</div>

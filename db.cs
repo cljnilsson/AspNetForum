@@ -36,6 +36,16 @@ public class DB : DbContext
 
 		return list;
 	}
+
+	public User GetRandomUser() {
+		return Users.ToList().Random();
+	}
+
+	public void AddToPostCountOfUser(string username) {
+		var u = Users.Where(u => u.Username == username).First();
+		u.posts++;
+		SaveChanges();
+	}
 	public async void populateSections()
 	{
 		if (await Sections.AnyAsync())
@@ -60,15 +70,28 @@ public class DB : DbContext
 		SaveChanges();
 	}
 
+	public void populateUsers() {
+		var demousers = new List<User>();
+		foreach(var i in Enumerable.Range(0, 20)) {
+			var username = Lorem.Email();
+			demousers.Add(new User{Username = username, Password = "", Email = username});
+		}
+
+		Users.AddRange(demousers);
+		SaveChanges();
+	}
+
 	public void populateThreads()
 	{
 		var threads = new List<Thread>();
 		var rnd = new Random();
 
-		foreach (var i in Enumerable.Range(0, 20))
+		foreach (var i in Enumerable.Range(0, 40))
 		{
 			var test = Sections.ToList().Random();
-			threads.Add(new Thread{author = Lorem.Email() , name = Lorem.Words(2,5), post = LoremNET.Lorem.Paragraph(4, 20, 3, 10), section = test});
+			var username = GetRandomUser().Username;
+			AddToPostCountOfUser(username);
+			threads.Add(new Thread{author = username , name = Lorem.Words(2,5), post = LoremNET.Lorem.Paragraph(4, 20, 3, 10), section = test});
 		}
 
 		Threads.AddRange(threads);
@@ -76,14 +99,16 @@ public class DB : DbContext
 	}
 
 	public void populatePosts() {
-		var sections = new List<Post>();
+		var posts = new List<Post>();
 
-		foreach(var i in Enumerable.Range(0, 120)) {
+		foreach(var i in Enumerable.Range(0, 140)) {
 			var test = Threads.ToList().Random();
-			sections.Add(new Post{author = Lorem.Email(), post = LoremNET.Lorem.Paragraph(4, 20, 3, 10), thread = test});
+			var username = GetRandomUser().Username;
+			AddToPostCountOfUser(username);
+			posts.Add(new Post{author = username, post = LoremNET.Lorem.Paragraph(4, 20, 3, 10), thread = test});
 		}
 
-		Posts.AddRange(sections);
+		Posts.AddRange(posts);
 		SaveChanges();
 	}
 
@@ -103,12 +128,28 @@ public class DB : DbContext
 		return Threads.Where(b => b.section == s).ToList();
 	}
 
+	public User GetUserByName(string s) {
+		return Users.Where(u => u.Username == s).FirstOrDefault();
+	}
+
 	public Thread GetThread(int id) {
 		return Threads.Where(t => t.id == id).First();
 	}
 
 	public List<Post> GetPostsInThread(int id) {
 		return Posts.Where(t => t.thread == GetThread(id)).ToList();
+	}
+
+	public void updateLastLogin(String username) {
+		var u = GetUserByName(username);
+		u.lastLogin = DateTime.Now;
+		SaveChanges();
+	}
+
+	public List<Post> GetLatestPostsByUser(string username, int i) {
+		var u = GetUserByName(username);
+		var list = Posts.Where(p => p.author == username).Take(i).ToList();
+		return list;
 	}
 
 	public void CreateUser(string username, string password, string email) {

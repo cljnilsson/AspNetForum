@@ -17,6 +17,10 @@ namespace aspnetcoreapp
 			using(var db = new DB()) {
 				db.Database.EnsureCreated();
 
+				if(!db.Users.Any()) {
+					db.populateUsers();
+				}
+
 				if(!db.Sections.Any()) {
 					db.populateSections();
 				}
