@@ -33,6 +33,11 @@ a:hover {
 	border-color: rgb(0, 179, 101);
 }
 
+.profilemessage {
+	height: 48px;
+}
+
+
 .section {
 	background-color: rgba(44,44,53,.5);
 	margin-top: 0.5rem;
@@ -42,6 +47,16 @@ a:hover {
 .avatar {
 	width: 100px;
 	height: 100px;
+}
+
+.avatarSmall {
+	width: 46px;
+	height: 46px;
+}
+
+.avatarBig {
+	width: 150px;
+	height: 150px;
 }
 
 .user {

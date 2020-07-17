@@ -31,10 +31,11 @@ Make sure you have a mysql instance running locally with username root and empty
 * CRUD users
 * CRUD posts
 
+* Login/Registration
+* User Profiles + profile messages
+
 
 ### Todo
-* Login system (Under Construction)
-* Registration (Under Construction)
 * User rank system
 
 ### Unconfirmed Features

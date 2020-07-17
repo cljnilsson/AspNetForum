@@ -75,3 +75,4 @@ G:\Personal Projects\aspnetcoreapp\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
 G:\Personal Projects\aspnetcoreapp\obj\Debug\netcoreapp3.1\Razor\Pages\search\index.cshtml.g.cs
 G:\Personal Projects\aspnetcoreapp\obj\Debug\netcoreapp3.1\Razor\Pages\profile\index.cshtml.g.cs
 G:\Personal Projects\aspnetcoreapp\obj\Debug\netcoreapp3.1\Razor\Pages\profile\posts\index.cshtml.g.cs
+G:\Personal Projects\aspnetcoreapp\obj\Debug\netcoreapp3.1\Razor\Pages\Shared\nav.cshtml.g.cs

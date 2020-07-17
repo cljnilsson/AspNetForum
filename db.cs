@@ -18,6 +18,8 @@ public class DB : DbContext
 	public DbSet<Thread> Threads {get; set;}
 	public DbSet<Post> Posts {get; set;}
 	public DbSet<User> Users {get; set;}
+	public DbSet<ProfilePost> ProfilePosts {get; set;}
+	public DbSet<ProfilePostComment> ProfilePostComments {get; set;}
 
 
 	protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -79,6 +81,8 @@ public class DB : DbContext
 
 		Users.AddRange(demousers);
 		SaveChanges();
+
+		CreateUser("admin", "admin", "");
 	}
 
 	public void populateThreads()
@@ -128,8 +132,18 @@ public class DB : DbContext
 		return Threads.Where(b => b.section == s).ToList();
 	}
 
+	public List<ProfilePostComment> GetCommentsOnProfilePost(ProfilePost pp)  
+	{  
+		var s = ProfilePostComments.Where(pc => pc.parent == pp).ToList();
+		return s;
+	}
+
 	public User GetUserByName(string s) {
 		return Users.Where(u => u.Username == s).FirstOrDefault();
+	}
+
+	public ProfilePost GetProfilePostById(int i) {
+		return ProfilePosts.Where(p => p.id == i).FirstOrDefault();
 	}
 
 	public Thread GetThread(int id) {
@@ -174,6 +188,26 @@ public class DB : DbContext
 	public void makeThread(string thread, string post, string user, string section) {
 		var s = Sections.Where(s => s.Name == section).FirstOrDefault();
 		Threads.Add(new Thread{name = thread, post = post, author = user, section = s});
+		SaveChanges();
+	}
+
+	public List<ProfilePost> GetPostsOnProfile(User u) {
+		return ProfilePosts.Where(pp => pp.u == u).Include(c => c.author).ToList();
+	}
+	 
+	public void makeProfilePost(string post, String on, String author) {
+		var profileOwner 	= GetUserByName(on);
+		var msgAuthor		= GetUserByName(author);
+
+		ProfilePosts.Add(new ProfilePost{post = post, u = profileOwner, author = msgAuthor});
+		SaveChanges();
+	}
+
+	public void makeProfilePostComment(string post, String author, int id) {
+		var msgAuthor	= GetUserByName(author);
+		var msgParent 	= GetProfilePostById(id); 
+
+		ProfilePostComments.Add(new ProfilePostComment{post = post, parent = msgParent, author = msgAuthor});
 		SaveChanges();
 	}
 }
