@@ -61,36 +61,34 @@
 					</div>
 					<div class="col" data-id="@p.id">
 						<div class="row profilemessage">
-							<span>
-								<a href="/profile/@p.author.Username" class="user">
-									@p.author.Username
-								</a>
-								@p.post
-							</span>
+							<a href="/profile/@p.author.Username" class="user">
+								@p.author.Username
+							</a>
+							<span>&nbsp;@p.post</span>
 						</div>
 						@{
 							user 		= new Byte[20];
 							exists 		= HttpContext.Session.TryGetValue("username", out user);
-							var suser	= user?.ToString();
-							<div class="row">
-								<div class="col-sm-auto pl-0 pr-0">
-									<small class="text-muted">@p.date.Year/@p.date.Month/@p.date.Day</small>
-								</div>
-								@if(HttpContext.Session.GetString("username") == p.author.Username) {
-									<div class="col-sm-auto pr-0">
-										<a href=""><small>Edit</small></a>
-									</div>
-									<div class="col-sm-auto">
-										<a href=""><small>Delete</small></a>
-									</div>	
-								}
-								@if(exists) {
-									<div class="col text-right">
-										<a class="ReplyToProfileMessage" href="">Reply</a>
-									</div>
-								}
-							</div>
 						}
+						<div class="row">
+							<div class="col-sm-auto pl-0 pr-0">
+								<small class="text-muted">@p.date.Year/@p.date.Month/@p.date.Day</small>
+							</div>
+							@if(HttpContext.Session.GetString("username") == p.author.Username) {
+								<div class="col-sm-auto pr-0">
+									<a class="ProfileMessageEdit" href=""><small>Edit</small></a>
+								</div>
+								<div class="col-sm-auto">
+									<a href="/profile/@Model.owner.Username/delete"><small>Delete</small></a>
+								</div>	
+							}
+							@if(exists) {
+								<div class="col text-right">
+									<a class="ReplyToProfileMessage" href="">Reply</a>
+								</div>
+							}
+						</div>
+						
 						@{
 							var comments = @Model.hash[p];
 							foreach(var c in comments)
@@ -101,12 +99,10 @@
 									</div>
 									<div class="col">
 										<div class="row profilemessage">
-											<span>
-												<a href="/profile/@c.author.Username" class="user">
-													@c.author.Username
-												</a>
-												@c.post
-											</span>
+											<a href="/profile/@c.author.Username" class="user">
+												@c.author.Username
+											</a>
+											<span>&nbsp;@c.post</span>
 										</div>
 									</div>
 								</div>
@@ -120,36 +116,69 @@
 </div>
 
 <script>
+	$(".ProfileMessageEdit").click(function(e) {
+		e.preventDefault();
+
+		let toReplyTo 	= $(this).parent().parent().prev();
+		let id 			= $(toReplyTo).parent().attr("data-id");
+		let nextRow 	= $(toReplyTo).next();
+		let post 		= $(toReplyTo).find("span").text();
+
+		let antiForgery = $('#profile > input[name="__RequestVerificationToken"]')[0].outerHTML;
+
+		console.log(toReplyTo);
+
+		$(toReplyTo).children().remove();
+
+		$(toReplyTo).append(`
+			<div class="col">
+				<form method="post">
+					<input type="text" name="profileMessageCommentId" value="${id}" hidden>
+					<textarea class="w-100 form-control p-0" name="profileMessageEdit">${post}</textarea>
+					<div class="text-right mt-1">
+						<button type="submit" class="btn btn-outline-primary">Confirm</button>
+					</div>
+					${antiForgery}
+				</form>
+			</div>
+		`);
+
+		$(nextRow).children()[1].remove();
+	});
+
 	$(".ReplyToProfileMessage").click(function(e) {
 		e.preventDefault();
-		console.log("hej");
 
 		let toReplyTo = $(this).parent().parent().prev();
-		let attacher  = $(toReplyTo).children().last();
+		let attacher  = $(toReplyTo).parent();
 		let id = $(attacher).attr("data-id");
 		let antiForgery = $('#profile > input[name="__RequestVerificationToken"]')[0].outerHTML;
-		console.log(antiForgery);
+		console.log(attacher);
 
 		$(this).remove();
 
 		$(attacher).append(`
-		<form method="post">
 			<div class="row">
-				<div class="col-sm-auto p-0">
-					<img class="avatarSmall" src="/images/default-avatar.png">
-				</div>
 				<div class="col">
-					<input type="text" name="profileMessageCommentId" value="${id}" hidden>
-					<textarea class="w-100 form-control" name="profileMessageComment"></textarea>
+					<form method="post">
+						<div class="row">
+							<div class="col-sm-auto p-0">
+								<img class="avatarSmall" src="/images/default-avatar.png">
+							</div>
+							<div class="col">
+								<input type="text" name="profileMessageCommentId" value="${id}" hidden>
+								<textarea class="w-100 form-control" name="profileMessageComment"></textarea>
+							</div>
+						</div>
+						<div class="row mt-1">
+							<div class="col text-right">
+								<button type="submit" class="btn btn-outline-primary">Reply</button>
+							</div>
+						</div>
+						${antiForgery}
+					</form>
 				</div>
 			</div>
-			<div class="row">
-				<div class="col text-right">
-					<button type="submit" class="btn btn-outline-primary">Reply</button>
-				</div>
-			</div>
-			${antiForgery}
-		</form>
-	`);
+		`);
 	});
 </script>

@@ -192,7 +192,9 @@ public class DB : DbContext
 	}
 
 	public List<ProfilePost> GetPostsOnProfile(User u) {
-		return ProfilePosts.Where(pp => pp.u == u).Include(c => c.author).ToList();
+		var list = ProfilePosts.Where(pp => pp.u == u).Include(c => c.author).ToList();
+		list.Reverse();
+		return list;
 	}
 	 
 	public void makeProfilePost(string post, String on, String author) {
@@ -208,6 +210,13 @@ public class DB : DbContext
 		var msgParent 	= GetProfilePostById(id); 
 
 		ProfilePostComments.Add(new ProfilePostComment{post = post, parent = msgParent, author = msgAuthor});
+		SaveChanges();
+	}
+
+	public void editProfilePost(int id, String msg) {
+		var msgParent 	= GetProfilePostById(id);
+
+		msgParent.post = msg;
 		SaveChanges();
 	}
 }

@@ -34,7 +34,7 @@ a:hover {
 }
 
 .profilemessage {
-	height: 48px;
+	min-height: 48px;
 }
 
 

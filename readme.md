@@ -33,7 +33,7 @@ Make sure you have a mysql instance running locally with username root and empty
 
 * Login/Registration
 * User Profiles + profile messages
-
+* Profile message + profile message comments CRUD (Currently being worked on)
 
 ### Todo
 * User rank system

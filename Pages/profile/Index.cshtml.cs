@@ -16,7 +16,7 @@ namespace aspnetcoreapp.Pages
 {
     public class ProfileModel : PageModel
     {
-		public User owner;
+		public User owner { get; set; }
 		public List<ProfilePost> profilePosts;
 		public Dictionary<ProfilePost, List<ProfilePostComment>> hash = new Dictionary<ProfilePost, List<ProfilePostComment>>();
 
@@ -56,7 +56,14 @@ namespace aspnetcoreapp.Pages
 
 					db.makeProfilePostComment(msg, author, id);
 				} else {
-					Console.WriteLine("Form Request is invalid");
+					Console.WriteLine("TRYING TO EDIT POST");
+					msg = Request.Form["profileMessageEdit"];
+					if(!String.IsNullOrEmpty(msg)) {
+						var id = Int32.Parse(Request.Form["profileMessageCommentId"]);
+						db.editProfilePost(id, msg);
+					} else {
+						Console.WriteLine("Form Request is invalid");
+					}
 				}
 			}
 
