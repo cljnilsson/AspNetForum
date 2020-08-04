@@ -230,4 +230,17 @@ public class DB : DbContext
 		msgParent.post = msg;
 		SaveChanges();
 	}
+
+	public void deleteProfilePost(int id) {
+		var comments = ProfilePostComments.Where(c => c.parent.id == id).ToList();
+		RemoveRange(comments);
+		Remove(GetProfilePostById(id));
+		SaveChanges();
+	}
+
+	public void deleteProfilePostComment(int id) {
+		var comment = GetProfilePostCommentById(id);
+		Remove(comment);
+		SaveChanges();
+	}
 }

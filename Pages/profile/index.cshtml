@@ -79,7 +79,10 @@
 									<a class="ProfileMessageEdit" href=""><small>Edit</small></a>
 								</div>
 								<div class="col-sm-auto">
-									<a href="/profile/@Model.owner.Username/delete"><small>Delete</small></a>
+									<form method="post">
+										<input type="number" value="@p.id" name="profileMessageDelete" hidden>
+										<a href="#" onclick="$(this).closest('form').submit();"><small>Delete</small></a>
+									</form>
 								</div>	
 							}
 							@if(exists) {
@@ -115,7 +118,10 @@
 											<a class="ProfileCommentEdit" href=""><small>Edit</small></a>
 										</div>
 										<div class="col-sm-auto">
-											<a href="/profile/@Model.owner.Username/delete"><small>Delete</small></a>
+											<form method="post">
+												<input type="number" value="@c.id" name="profileCommentDelete" hidden>
+												<a href="#" onclick="$(this).closest('form').submit();"><small>Delete</small></a>
+											</form>
 										</div>	
 									}
 								</div>
