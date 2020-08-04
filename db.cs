@@ -146,6 +146,10 @@ public class DB : DbContext
 		return ProfilePosts.Where(p => p.id == i).FirstOrDefault();
 	}
 
+	public ProfilePostComment GetProfilePostCommentById(int i) {
+		return ProfilePostComments.Where(p => p.id == i).FirstOrDefault();
+	}
+
 	public Thread GetThread(int id) {
 		return Threads.Where(t => t.id == id).First();
 	}
@@ -215,6 +219,13 @@ public class DB : DbContext
 
 	public void editProfilePost(int id, String msg) {
 		var msgParent 	= GetProfilePostById(id);
+
+		msgParent.post = msg;
+		SaveChanges();
+	}
+
+	public void editProfilePostComment(int id, String msg) {
+		var msgParent 	= GetProfilePostCommentById(id);
 
 		msgParent.post = msg;
 		SaveChanges();

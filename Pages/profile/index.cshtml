@@ -93,12 +93,12 @@
 							var comments = @Model.hash[p];
 							foreach(var c in comments)
 							{
-								<div class="row">
+								<div class="row" comment-id="@c.id">
 									<div class="col-sm-auto pl-0">
 										<img class="avatarSmall" src="~/images/default-avatar.png">
 									</div>
 									<div class="col">
-										<div class="row profilemessage">
+										<div class="row profileMessageComment">
 											<a href="/profile/@c.author.Username" class="user">
 												@c.author.Username
 											</a>
@@ -129,16 +129,25 @@
 </div>
 
 <script>
-	$(".ProfileMessageEdit").click(function(e) {
-		e.preventDefault();
+	function edit(type) {
+		let areaname;
 
-		let toReplyTo 	= $(this).parent().parent().prev();
-		let id 			= $(toReplyTo).parent().attr("data-id");
-		let nextRow 	= $(toReplyTo).next();
+		if(type === "post") {
+			areaname = "profileMessageEdit";
+		} else if(type === "comment") {
+			areaname = "profileMessageCommentEdit";
+		} else {
+			// ????
+		}
+
+		let toReplyTo 	= $(this).closest(".row").prev();
+		let id 			= $(toReplyTo).closest("[comment-id]").attr("comment-id");
+		let nextRow 	= $(this).closest(".row")
 		let post 		= $(toReplyTo).find("span").text();
 
 		let antiForgery = $('#profile > input[name="__RequestVerificationToken"]')[0].outerHTML;
-
+		console.log(id);
+		console.log($(this).closest(".row"));
 		console.log(toReplyTo);
 
 		$(toReplyTo).children().remove();
@@ -147,7 +156,7 @@
 			<div class="col">
 				<form method="post">
 					<input type="text" name="profileMessageCommentId" value="${id}" hidden>
-					<textarea class="w-100 form-control p-0" name="profileMessageEdit">${post}</textarea>
+					<textarea class="w-100 form-control p-0" name="${areaname}">${post}</textarea>
 					<div class="text-right mt-1">
 						<button type="submit" class="btn btn-outline-primary">Confirm</button>
 					</div>
@@ -157,6 +166,18 @@
 		`);
 
 		$(nextRow).children()[1].remove();
+	}
+
+	$(".ProfileMessageEdit").click(function(e) {
+		e.preventDefault();
+		var bound = edit.bind(this);
+		bound("post");
+	});
+
+	$(".ProfileCommentEdit").click(function(e) {
+		e.preventDefault();
+		var bound = edit.bind(this);
+		bound("comment");
 	});
 
 	$(".ReplyToProfileMessage").click(function(e) {

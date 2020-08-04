@@ -22,12 +22,13 @@ namespace aspnetcoreapp.Pages
 		public Dictionary<ProfilePost, List<ProfilePostComment>> hash = new Dictionary<ProfilePost, List<ProfilePostComment>>();
 
 		private static DB db = new DB();
-		private static String [] tocheck = {"profileMessage", "profileMessageComment", "profileMessageEdit"};
+		private static String [] tocheck = {"profileMessage", "profileMessageComment", "profileMessageEdit", "profileMessageCommentEdit"};
 		private static Dictionary<String, Callback> callbacks = new Dictionary<String, Callback>
 		{
 			[tocheck[0]] = onProfileMessage,
 			[tocheck[1]] = onProfileMessageComment,
-			[tocheck[2]] = onProfileMessageEdit
+			[tocheck[2]] = onProfileMessageEdit,
+			[tocheck[3]] = onProfileCommentEdit
 		};
 
 		private void onLoad(string user) {
@@ -85,6 +86,11 @@ namespace aspnetcoreapp.Pages
 		private static void onProfileMessageEdit(HttpRequest Request, StringValues msg, string author, string user) {
 			var id = Int32.Parse(Request.Form["profileMessageCommentId"]);
 			db.editProfilePost(id, msg);
+		}
+
+		private static void onProfileCommentEdit(HttpRequest Request, StringValues msg, string author, string user) {
+			var id = Int32.Parse(Request.Form["profileMessageCommentId"]); // Reply-to identifier
+			db.editProfilePostComment(id, msg);
 		}
     }
 }
