@@ -8,17 +8,27 @@ using Microsoft.AspNetCore.Http.Extensions;
 using System.Web;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
-using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Primitives;
 
 using Model;
 
 namespace aspnetcoreapp.Pages
 {
+	public delegate void Callback(HttpRequest Request, StringValues sv, string author, string user);  
     public class ProfileModel : PageModel
     {
 		public User owner { get; set; }
 		public List<ProfilePost> profilePosts;
 		public Dictionary<ProfilePost, List<ProfilePostComment>> hash = new Dictionary<ProfilePost, List<ProfilePostComment>>();
+
+		private static DB db = new DB();
+		private static String [] tocheck = {"profileMessage", "profileMessageComment", "profileMessageEdit"};
+		private static Dictionary<String, Callback> callbacks = new Dictionary<String, Callback>
+		{
+			[tocheck[0]] = onProfileMessage,
+			[tocheck[1]] = onProfileMessageComment,
+			[tocheck[2]] = onProfileMessageEdit
+		};
 
 		private void onLoad(string user) {
 			var db = new DB();
@@ -38,36 +48,43 @@ namespace aspnetcoreapp.Pages
 		public IActionResult OnPost(string user)
         {
 			Console.WriteLine("1");
-			var db = new DB();
 			onLoad(user);
 
-			var msg = Request.Form["profileMessage"];
 			var author = HttpContext.Session.GetString("username");
+			var valid = false;
 
-			if(!String.IsNullOrEmpty(msg)) {
-				Console.WriteLine($"{author} is trying to write {msg} on {user}'s profile");
+			foreach(var key in tocheck) {
+				var msg = Request.Form[key];
 
-				db.makeProfilePost(msg, user, author);
-			} else {
-				msg = Request.Form["profileMessageComment"];
 				if(!String.IsNullOrEmpty(msg)) {
-					var id = Int32.Parse(Request.Form["profileMessageCommentId"]);
-					Console.WriteLine($"{author} is trying to write {msg} on {user}'s profile as a reply to a comment with id {id}");
-
-					db.makeProfilePostComment(msg, author, id);
-				} else {
-					Console.WriteLine("TRYING TO EDIT POST");
-					msg = Request.Form["profileMessageEdit"];
-					if(!String.IsNullOrEmpty(msg)) {
-						var id = Int32.Parse(Request.Form["profileMessageCommentId"]);
-						db.editProfilePost(id, msg);
-					} else {
-						Console.WriteLine("Form Request is invalid");
-					}
+					callbacks[key].Invoke(Request, msg, author, user);
+					valid = true;
+					break; // Also maybe wrong
 				}
 			}
 
+			if(!valid) {
+				Console.WriteLine("Form Request is invalid");
+			}
+
 			return Redirect($"/profile/{user}");
+		}
+		private static void onProfileMessage(HttpRequest Request, StringValues msg, string author, string user) {
+			Console.WriteLine($"{author} is trying to write {msg} on {user}'s profile");
+
+			db.makeProfilePost(msg, user, author);
+		}
+
+		private static void onProfileMessageComment(HttpRequest Request, StringValues msg, string author, string user) {
+			var id = Int32.Parse(Request.Form["profileMessageCommentId"]);
+			Console.WriteLine($"{author} is trying to write {msg} on {user}'s profile as a reply to a comment with id {id}");
+
+			db.makeProfilePostComment(msg, author, id);
+		}
+
+		private static void onProfileMessageEdit(HttpRequest Request, StringValues msg, string author, string user) {
+			var id = Int32.Parse(Request.Form["profileMessageCommentId"]);
+			db.editProfilePost(id, msg);
 		}
     }
 }

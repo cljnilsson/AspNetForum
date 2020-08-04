@@ -106,6 +106,19 @@
 										</div>
 									</div>
 								</div>
+								<div class="row">
+									<div class="col-sm-auto pl-0 pr-0">
+										<small class="text-muted">@c.date.Year/@c.date.Month/@c.date.Day</small>
+									</div>
+									@if(HttpContext.Session.GetString("username") == c.author.Username) {
+										<div class="col-sm-auto pr-0">
+											<a class="ProfileCommentEdit" href=""><small>Edit</small></a>
+										</div>
+										<div class="col-sm-auto">
+											<a href="/profile/@Model.owner.Username/delete"><small>Delete</small></a>
+										</div>	
+									}
+								</div>
 							}
 						}
 					</div>
