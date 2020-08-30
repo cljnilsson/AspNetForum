@@ -1,14 +1,21 @@
 {
 	"compileOnSave": true,
+	"allowJs": true,
 	"compilerOptions": {
 	  "noImplicitAny": false,
 	  "noEmitOnError": true,
-	  "removeComments": false,
-	  "sourceMap": true,
+	  "removeComments": true,
+	  "allowSyntheticDefaultImports": true,
+	  "sourceMap": false,
+	  "module": "es6",
 	  "target": "es5",
-	  "outDir": "wwwroot/js"
+	  "outDir": "wwwroot/js",
+	  "typeRoots": [
+		"./node_modules/@types",
+	  ],
+	  "types": ["jquery"]
 	},
 	"include": [
-	  "scripts/**/*"
+	  "ts/**/*"
 	]
-  }
+}

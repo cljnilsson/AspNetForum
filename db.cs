@@ -169,6 +169,12 @@ public class DB : DbContext
 		return s;
 	}
 
+	public void UpdateUserAvatar(string user, string filename) {
+		var u = GetUserByName(user);
+		u.avatar = filename;
+		SaveChanges();
+	}
+
 	public User GetUserByName(string s) {
 		return Users.Where(u => u.Username == s).FirstOrDefault();
 	}

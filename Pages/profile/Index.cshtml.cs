@@ -1,4 +1,5 @@
-﻿using System;
+﻿using System.IO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Extensions;
 using System.Web;
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Primitives;
 
 using Model;
@@ -20,6 +21,9 @@ namespace aspnetcoreapp.Pages
 		public User owner { get; set; }
 		public List<ProfilePost> profilePosts;
 		public Dictionary<ProfilePost, List<ProfilePostComment>> hash = new Dictionary<ProfilePost, List<ProfilePostComment>>();
+		
+		[BindProperty]
+		public IFormFile avatar { get; set; }
 
 		private static DB db = new DB();
 		private static String [] tocheck = {"profileMessage", "profileMessageComment", "profileMessageEdit", "profileMessageCommentEdit", "profileCommentDelete", "profileMessageDelete"};
@@ -32,6 +36,27 @@ namespace aspnetcoreapp.Pages
 			[tocheck[4]] = onProfileCommentDelete,
 			[tocheck[5]] = onProfileMessageDelete
 		};
+
+		private IWebHostEnvironment host;
+
+		public ProfileModel(IWebHostEnvironment he) {
+			host = he;
+			Console.WriteLine(he.ContentRootPath);
+		}
+
+		private string ProcessUploadedFile() {
+			string uniqueFileName = avatar.FileName;
+
+			if(avatar != null) {
+				string folder = Path.Combine(host.WebRootPath, "images/avatars");
+				string path = Path.Combine(folder, uniqueFileName);
+				using(var filestream = new FileStream(path, FileMode.Create)) {
+					avatar.CopyTo(filestream);
+				}
+			}
+
+			return uniqueFileName;
+		}
 
 		private void onLoad(string user) {
 			var db = new DB();
@@ -53,6 +78,12 @@ namespace aspnetcoreapp.Pages
         {
 			Console.WriteLine("1");
 			onLoad(user);
+
+			if(avatar != null) {
+				Console.WriteLine("HNSAKLJDNKJASND;MASD");
+				db.UpdateUserAvatar(user, ProcessUploadedFile());
+				return Redirect($"/profile/{user}");
+			}
 
 			var author = HttpContext.Session.GetString("username");
 			var valid = false;

@@ -37,7 +37,6 @@ a:hover {
 	min-height: 48px;
 }
 
-
 .section {
 	background-color: rgba(44,44,53,.5);
 	margin-top: 0.5rem;
@@ -61,6 +60,18 @@ a:hover {
 
 .user {
 	color: #3490dc;
+}
+
+.User {
+	color: #3490dc;
+}
+
+.Moderator {
+	color: #34dcaa;
+}
+
+.Admin {
+	color: #dc6434;
 }
 
 .thread:hover {
