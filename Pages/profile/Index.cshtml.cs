@@ -35,7 +35,7 @@ namespace aspnetcoreapp.Pages
 
 		private void onLoad(string user) {
 			var db = new DB();
-			owner = db.GetUserByName(user);
+			owner = db.GetUserByNameWithRank(user);
 			profilePosts = db.GetPostsOnProfile(owner);
 
 			foreach(var pp in profilePosts) {
@@ -43,6 +43,7 @@ namespace aspnetcoreapp.Pages
 				hash.Add(pp, list);
 			}
 		}
+
 		public void OnGet(string user)
         {
 			onLoad(user);

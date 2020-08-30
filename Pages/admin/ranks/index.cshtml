@@ -1,0 +1,31 @@
+@page "/admin/ranks"
+@{
+    Layout = "admin";
+}
+@model AdminRankModel
+<table class="table">
+	<thead>
+		<tr>
+			<th scope="col">#</th>
+			<th scope="col">Name</th>
+			<th scope="col">Powers</th>
+		</tr>
+	</thead>
+	<tbody>
+		@{int i = 1;}
+		@foreach(var r in Model.ranks)
+		{
+			<tr>
+				<th scope="row">@i</th>
+				<td>@r.name</td>
+				@if(r.delete == true || r.edit == true || r.controlPanel == true) {
+					<td>Yes</td>
+				} else {
+					<td>No</td>
+				}
+				<td class="text-right">Edit Copy Delete</td>
+			</tr>
+			i++;
+		}
+	</tbody>
+</table>

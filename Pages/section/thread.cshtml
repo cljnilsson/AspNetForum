@@ -1,31 +1,45 @@
-@page "/section/{sec:alpha}/{id:int}"
+@page "/section/{sec}/{id:int}"
 @model ThreadModel;
 
-<div class="threadHeader">
-	<h3>@Model.thread.name</h3>
+<div class="threadHeader row">
+	<div class="col">
+		<h3 class="m-2 ser">@Model.thread.name</h3>
+	</div>
+	<div class="col text-right text-muted align-self-center">
+		<p class="mb-0">@Model.thread.date</p>
+	</div>
 </div>
 <div class="row">
 	<div class="col-sm-2 text-center">
-		<h5 class="mt-2">@Model.thread.author</h5>
-		<small>Default Title</small>
+		<a href="/profile/@Model.thread.author.Username"><h5 class="mt-2 user">@Model.thread.author.Username</h5></a>
+		<small>@Model.thread.author.Rank.name</small><br>
 		<img class="avatar mb-3" src="~/images/default-avatar.png">
 	</div>
-	<div class="col">
-		@Html.Raw(Model.thread.post)
+	<div class="col pl-0">
+		<p class="mt-2">@Html.Raw(Model.thread.post)</p>
 	</div>
 </div>
-
-<br><br>
 @foreach(var p in Model.posts)
 {
 	<div class="post row">
 		<div class="col-sm-2 text-center">
-			<h5 class="mt-2">@p.author</h5>
-			<small>Default Title</small>
+			<a href="/profile/@p.author.Username"><h5 class="mt-2 user">@p.author.Username</h5></a>
+			<small>@p.author.Rank.name</small><br>
 			<img class="avatar mb-3" src="~/images/default-avatar.png">
 		</div>
 		<div class="col">
-			@Html.Raw(p.post)
+			<div class="row">
+				<div class="col postfield">
+					<p class="mt-2">@Html.Raw(p.post)</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-2">
+		</div>
+		<div class="col text-muted">
+			<small>@p.date</small>
 		</div>
 	</div>
 }

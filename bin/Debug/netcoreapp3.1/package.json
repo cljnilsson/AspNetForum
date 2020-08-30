@@ -1,0 +1,26 @@
+{
+  "name": "aspnetcoreapp",
+  "version": "1.0.0",
+  "description": "demo",
+  "scripts": {
+	"dev": "concurrently \"tsc -w\" \"dotnet watch run\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cljnilsson/AspNetForum.git"
+  },
+  "keywords": [
+    "C#",
+    "dotnet"
+  ],
+  "author": "Lukas N",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cljnilsson/AspNetForum/issues"
+  },
+  "homepage": "https://github.com/cljnilsson/AspNetForum#readme",
+  "devDependencies": {
+    "concurrently": "^5.3.0"
+  }
+}

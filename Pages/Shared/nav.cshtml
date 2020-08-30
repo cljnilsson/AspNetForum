@@ -1,3 +1,4 @@
+@using Microsoft.AspNetCore.Http
 <header class="pb-3">
 	<nav class="navbar navbar-expand-md">
 		<div class="container-fluid" id="navbar-container">
@@ -34,7 +35,8 @@
 					var user = new Byte[20];
 					var exists = Context.Session.TryGetValue("username", out user);
 					if(exists) {
-						<button class="btn btn-sm btn-outline-primary">Logout</button>
+						<button class="btn btn-sm btn-outline-primary mr-2 ml-2">Logout</button>
+						<a href="/profile/@Context.Session.GetString("username")"><button class="btn btn-sm btn-outline-primary">My Profile</button></a>
 					} else {
 						<button id="log" class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#loginModal">Login</button>
 						<partial name="loginmodal"/>

@@ -23,11 +23,11 @@
 
 				if(c == 0) {
 					t.latest = t.date;
-					t.latestSource = t.author;
+					t.latestSource = t.author.Username;
 				} else {
 					var last = posts.Last();
 					t.latest = last.date;
-					t.latestSource = last.author;
+					t.latestSource = last.author.Username;
 				}
 			}
 

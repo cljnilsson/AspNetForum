@@ -1,5 +1,7 @@
 @page "/section/{sec}"
 @model SectionModel
+@using Microsoft.AspNetCore.Http
+
 <div class="row">
 	<table class="table">
 		<thead>
@@ -25,5 +27,11 @@
 			}
 		</tbody>
 	</table>
-	<a href="/section/@RouteData.Values["sec"]/newthread"><button class="btn btn-outline-light ml-3">Create New Thread</button></a>
+	@{
+		var user = new Byte[20];
+		var exists = HttpContext.Session.TryGetValue("username", out user);
+		if(exists) {
+			<a href="/section/@RouteData.Values["sec"]/newthread"><button class="btn btn-outline-primary ml-3">Create New Thread</button></a>
+		}
+	}
 </div>

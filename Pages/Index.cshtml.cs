@@ -13,7 +13,7 @@ namespace aspnetcoreapp.Pages
     public class IndexModel : PageModel
     {
         private readonly ILogger<IndexModel> _logger;		
-		public List<Section> baba;
+		public List<Section> sections;
 
         public IndexModel(ILogger<IndexModel> logger)
         {
@@ -23,10 +23,10 @@ namespace aspnetcoreapp.Pages
         public void OnGet()
         {
 			var db = new DB();
-			baba = db.GetAllSections();
+			sections = db.GetAllSections();
 
 			// Finds latest post in all threads
-			foreach(var s in baba) {
+			foreach(var s in sections) {
 				var threads = db.GetThreadsFromSection(s.Name);
 				if(threads.Count > 0) {
 					foreach(var t in threads) {
@@ -34,20 +34,20 @@ namespace aspnetcoreapp.Pages
 						var c 		= posts.Count;
 
 						if(c == 0) {
-							t.latest = t.date;
-							t.latestSource = t.author;
+							t.latest 		= t.date;
+							t.latestSource  = t.author.Username;
 						} else {
-							var last = posts.Last();
-							t.latest = last.date;
-							t.latestSource = last.author;
+							var last 		= posts.Last();
+							t.latest 		= last.date;
+							t.latestSource  = last.author.Username;
 						}
 					}
 
 					threads = threads.OrderByDescending(t => t.latest).ToList();
 					
-					s.latest = threads.FirstOrDefault().latest;
-					s.latestSource = threads.FirstOrDefault().latestSource;
-					s.latestThread = threads.FirstOrDefault().name;
+					s.latest 		= threads.FirstOrDefault().latest;
+					s.latestSource  = threads.FirstOrDefault().latestSource;
+					s.latestThread  = threads.FirstOrDefault().name;
 				}
 			}
         }

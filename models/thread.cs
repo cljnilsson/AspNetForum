@@ -7,7 +7,7 @@ namespace Model
 	{
 		public int id { get; set; }
 
-		public string author {get; set;}
+		public User author {get; set;}
 		public string name { get; set; }
 		public string post { get; set; }
 		public Section section { get; set; }

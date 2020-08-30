@@ -6673,11 +6673,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "g:\\Personal Projects\\aspnetcoreapp\\aspnetcoreapp.csproj",
+      "projectUniqueName": "G:\\Personal Projects\\aspnetcoreapp\\aspnetcoreapp.csproj",
       "projectName": "aspnetcoreapp",
-      "projectPath": "g:\\Personal Projects\\aspnetcoreapp\\aspnetcoreapp.csproj",
+      "projectPath": "G:\\Personal Projects\\aspnetcoreapp\\aspnetcoreapp.csproj",
       "packagesPath": "C:\\Users\\zkall\\.nuget\\packages\\",
-      "outputPath": "g:\\Personal Projects\\aspnetcoreapp\\obj\\",
+      "outputPath": "G:\\Personal Projects\\aspnetcoreapp\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\zkall\\AppData\\Roaming\\NuGet\\NuGet.Config",

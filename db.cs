@@ -14,13 +14,13 @@ public class DB : DbContext
   {
     public MySqlConnection Connection;
 
-	public DbSet<Section> Sections {get; set;}
-	public DbSet<Thread> Threads {get; set;}
-	public DbSet<Post> Posts {get; set;}
-	public DbSet<User> Users {get; set;}
-	public DbSet<ProfilePost> ProfilePosts {get; set;}
-	public DbSet<ProfilePostComment> ProfilePostComments {get; set;}
-
+	public DbSet<Section> 				Sections 			{get; set;}
+	public DbSet<Thread> 				Threads 			{get; set;}
+	public DbSet<Post> 					Posts 				{get; set;}
+	public DbSet<User> 					Users 				{get; set;}
+	public DbSet<ProfilePost> 			ProfilePosts 		{get; set;}
+	public DbSet<ProfilePostComment> 	ProfilePostComments {get; set;}
+	public DbSet<Rank> 					Ranks				{get; set;}
 
 	protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 	{
@@ -43,11 +43,34 @@ public class DB : DbContext
 		return Users.ToList().Random();
 	}
 
+	public Rank GetRankByName(string s) {
+		return Ranks.Where(r => s == r.name).FirstOrDefault();
+	}
+
 	public void AddToPostCountOfUser(string username) {
 		var u = Users.Where(u => u.Username == username).First();
 		u.posts++;
 		SaveChanges();
 	}
+
+	public async void populateRanks() {
+		if (await Ranks.AnyAsync())
+		{
+			return; // DB has been seeded
+		}
+
+		var ranks = new Rank[] {
+			new Rank{name = "Admin" 	, edit = true  , post = true  , delete = true  , controlPanel = true  },
+			new Rank{name = "Moderator" , edit = true  , post = true  , delete = true  , controlPanel = false },
+			new Rank{name = "User" 		, edit = false , post = true  , delete = false , controlPanel = false },
+			new Rank{name = "Banned" 	, edit = false , post = false , delete = false , controlPanel = false },
+		};
+
+		Ranks.AddRange(ranks);
+		SaveChanges();
+
+	}
+
 	public async void populateSections()
 	{
 		if (await Sections.AnyAsync())
@@ -65,7 +88,7 @@ public class DB : DbContext
 			new Section{Name = "Art"			, Image = "art.png"   		, description = "Drawings, textures or similar can be shared here and discuessed here!"},
 			new Section{Name = "Music"			, Image = "music.png"   	, description = "Talk about music, or share your own"},
 			new Section{Name = "Books"   		, Image = "books.png"   	, description = "Share your thoughts about books you've read, or are writing"},
-			new Section{Name = "Off Topic"		, Image = "offtopic.png"   	, description = "Talk about anything random here"}
+			new Section{Name = "Off-topic"		, Image = "offtopic.png"   	, description = "Talk about anything random here"}
 		};
 
 		Sections.AddRange(sections);
@@ -74,15 +97,18 @@ public class DB : DbContext
 
 	public void populateUsers() {
 		var demousers = new List<User>();
+		var rank 	  = GetRankByName("User");
+		
 		foreach(var i in Enumerable.Range(0, 20)) {
-			var username = Lorem.Email();
-			demousers.Add(new User{Username = username, Password = "", Email = username});
+			var username = Lorem.Words(1, false) + Lorem.Number(0, 10000);
+			var email = Lorem.Email();
+			demousers.Add(new User{Username = username, Password = "", Email = email, Rank = rank});
 		}
 
 		Users.AddRange(demousers);
 		SaveChanges();
 
-		CreateUser("admin", "admin", "");
+		CreateAdmin("admin", "admin", "admin@admin.com"); // Default admin account
 	}
 
 	public void populateThreads()
@@ -93,9 +119,9 @@ public class DB : DbContext
 		foreach (var i in Enumerable.Range(0, 40))
 		{
 			var test = Sections.ToList().Random();
-			var username = GetRandomUser().Username;
-			AddToPostCountOfUser(username);
-			threads.Add(new Thread{author = username , name = Lorem.Words(2,5), post = LoremNET.Lorem.Paragraph(4, 20, 3, 10), section = test});
+			var user = GetRandomUser();
+			AddToPostCountOfUser(user.Username);
+			threads.Add(new Thread{author = user , name = Lorem.Words(2,5), post = LoremNET.Lorem.Paragraph(4, 20, 3, 10), section = test});
 		}
 
 		Threads.AddRange(threads);
@@ -105,11 +131,11 @@ public class DB : DbContext
 	public void populatePosts() {
 		var posts = new List<Post>();
 
-		foreach(var i in Enumerable.Range(0, 140)) {
+		foreach(var i in Enumerable.Range(30, 140)) {
 			var test = Threads.ToList().Random();
-			var username = GetRandomUser().Username;
-			AddToPostCountOfUser(username);
-			posts.Add(new Post{author = username, post = LoremNET.Lorem.Paragraph(4, 20, 3, 10), thread = test});
+			var user = GetRandomUser();
+			AddToPostCountOfUser(user.Username);
+			posts.Add(new Post{author = user, post = LoremNET.Lorem.Paragraph(4, 20, 3, 10), thread = test});
 		}
 
 		Posts.AddRange(posts);
@@ -124,6 +150,11 @@ public class DB : DbContext
 	public List<Section> GetAllSections()  
 	{  	
 		return Sections.ToList();
+	}
+
+	public List<Rank> GetAllRanks()  
+	{  	
+		return Ranks.ToList();
 	}
 
 	public List<Thread> GetThreadsFromSection(string section)  
@@ -142,6 +173,10 @@ public class DB : DbContext
 		return Users.Where(u => u.Username == s).FirstOrDefault();
 	}
 
+	public User GetUserByNameWithRank(string s) {
+		return Users.Where(u => u.Username == s).Include(u => u.Rank).FirstOrDefault();
+	}
+
 	public ProfilePost GetProfilePostById(int i) {
 		return ProfilePosts.Where(p => p.id == i).FirstOrDefault();
 	}
@@ -151,11 +186,11 @@ public class DB : DbContext
 	}
 
 	public Thread GetThread(int id) {
-		return Threads.Where(t => t.id == id).First();
+		return Threads.Where(t => t.id == id).Include(c => c.author).ThenInclude(author => author.Rank).First();
 	}
 
 	public List<Post> GetPostsInThread(int id) {
-		return Posts.Where(t => t.thread == GetThread(id)).ToList();
+		return Posts.Where(t => t.thread == GetThread(id)).Include(c => c.author).ToList();
 	}
 
 	public void updateLastLogin(String username) {
@@ -166,14 +201,21 @@ public class DB : DbContext
 
 	public List<Post> GetLatestPostsByUser(string username, int i) {
 		var u = GetUserByName(username);
-		var list = Posts.Where(p => p.author == username).Take(i).ToList();
+		var list = Posts.Where(p => p.author.Username == username).Take(i).ToList();
 		return list;
 	}
 
-	public void CreateUser(string username, string password, string email) {
+	private void CreateUser(string username, string password, string email, Rank r) {
 		string hashed = Hash.SecurePasswordHasher.Hash(password);
-		Users.Add(new User{Email = email, Username = username, Password = hashed});
+		Users.Add(new User{Email = email, Username = username, Password = hashed, Rank = r});
 		SaveChanges();
+	}
+	public void CreateUser(string username, string password, string email) {
+		CreateUser(username, password, email, GetRankByName("User"));
+	}
+
+	public void CreateAdmin(string username, string password, string email) {
+		CreateUser(username, password, email, GetRankByName("Admin"));
 	}
 
 	public bool UserExist(string username) {
@@ -191,7 +233,7 @@ public class DB : DbContext
 
 	public void makeThread(string thread, string post, string user, string section) {
 		var s = Sections.Where(s => s.Name == section).FirstOrDefault();
-		Threads.Add(new Thread{name = thread, post = post, author = user, section = s});
+		Threads.Add(new Thread{name = thread, post = post, author = GetUserByName(user), section = s});
 		SaveChanges();
 	}
 

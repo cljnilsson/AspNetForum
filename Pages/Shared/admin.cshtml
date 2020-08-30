@@ -1,0 +1,51 @@
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>AspNetForum - Admin</title>
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+		<link href="~/lib/fontawesome/css/all.css" rel="stylesheet">
+		<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="~/css/site.css" />
+		<link rel="stylesheet" href="~/css/bootstrap_override.css" />
+
+		<script src="~/lib/jquery/dist/jquery.min.js"></script>
+		<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	</head>
+	<body>
+		<div class="container">
+			<main role="main" class="pb-3">
+				<div class="row">
+					<div class="col">
+						<h3 class="text-center">Admin Control Panel</h3>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-auto">
+						<div>
+							<a href="admin/ranks">User Rank Management</a>
+						</div>
+						<div>
+							Something else
+						</div>
+					</div>
+					<div class="col">
+						@RenderBody()
+					</div>
+				</div>
+			</main>
+		</div>
+
+		<footer class="footer text-white pt-3">
+			<div class="container text-center">
+				&copy; 2020 - Cool Company - Made by Lukas Nilsson - <a href="https://github.com/cljnilsson/AspNetForum"><i class="fab fa-github"></i></a>
+			</div>
+		</footer>
+
+		<script src="~/js/site.js" asp-append-version="true"></script>
+
+		@RenderSection("Scripts", required: false)
+	</body>
+</html>
