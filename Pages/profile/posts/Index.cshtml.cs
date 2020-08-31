@@ -21,7 +21,7 @@ namespace aspnetcoreapp.Pages
 		public void OnGet(string user)
         {
 			var db = new DB();
-			owner = db.GetUserByName(user);
+			owner = db.GetUserByNameWithRank(user);
 			posts = db.GetLatestPostsByUser(user, 10);
 		}
     }

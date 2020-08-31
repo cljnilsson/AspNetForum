@@ -35,11 +35,11 @@ namespace aspnetcoreapp.Pages
 
 						if(c == 0) {
 							t.latest 		= t.date;
-							t.latestSource  = t.author.Username;
+							t.latestSource  = t.author;
 						} else {
 							var last 		= posts.Last();
 							t.latest 		= last.date;
-							t.latestSource  = last.author.Username;
+							t.latestSource  = last.author;
 						}
 					}
 

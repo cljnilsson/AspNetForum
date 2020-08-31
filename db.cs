@@ -30,7 +30,7 @@ public class DB : DbContext
 	public List<Post> searchPosts(String q) {
 		var list = new List<Post>();
 
-		foreach(var p in Posts.Include(w => w.thread).ToList()) {
+		foreach(var p in Posts.Include(w => w.thread).ThenInclude(t => t.section).Include(p => p.author).ThenInclude(a => a.Rank).ToList()) {
 			if(p.post.Contains(q)) {
 				list.Add(p);
 			}
@@ -60,10 +60,10 @@ public class DB : DbContext
 		}
 
 		var ranks = new Rank[] {
-			new Rank{name = "Admin" 	, edit = true  , post = true  , delete = true  , controlPanel = true  },
-			new Rank{name = "Moderator" , edit = true  , post = true  , delete = true  , controlPanel = false },
-			new Rank{name = "User" 		, edit = false , post = true  , delete = false , controlPanel = false },
-			new Rank{name = "Banned" 	, edit = false , post = false , delete = false , controlPanel = false },
+			new Rank{name = "Admin" 	, edit = true  , post = true  , delete = true  , controlPanel = true  , color = "#dc6434" },
+			new Rank{name = "Moderator" , edit = true  , post = true  , delete = true  , controlPanel = false , color = "#34dcaa" },
+			new Rank{name = "User" 		, edit = false , post = true  , delete = false , controlPanel = false , color = "#3490dc" },
+			new Rank{name = "Banned" 	, edit = false , post = false , delete = false , controlPanel = false , color = "#3490dc" },
 		};
 
 		Ranks.AddRange(ranks);
@@ -108,6 +108,8 @@ public class DB : DbContext
 		Users.AddRange(demousers);
 		SaveChanges();
 
+		CreateMod  ("Mod1", "mod", "mod@admin.com");
+		CreateMod  ("Mod2", "mod", "mod@admin.com");
 		CreateAdmin("admin", "admin", "admin@admin.com"); // Default admin account
 	}
 
@@ -196,7 +198,7 @@ public class DB : DbContext
 	}
 
 	public List<Post> GetPostsInThread(int id) {
-		return Posts.Where(t => t.thread == GetThread(id)).Include(c => c.author).ToList();
+		return Posts.Where(t => t.thread == GetThread(id)).Include(c => c.author).ThenInclude(a => a.Rank).ToList();
 	}
 
 	public void updateLastLogin(String username) {
@@ -218,6 +220,10 @@ public class DB : DbContext
 	}
 	public void CreateUser(string username, string password, string email) {
 		CreateUser(username, password, email, GetRankByName("User"));
+	}
+
+	public void CreateMod(string username, string password, string email) {
+		CreateUser(username, password, email, GetRankByName("Moderator"));
 	}
 
 	public void CreateAdmin(string username, string password, string email) {

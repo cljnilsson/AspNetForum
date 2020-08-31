@@ -36,7 +36,7 @@
 		<a href="/profile/@Model.owner.Username/posts">Recent posts</a>
 	</div>
 	<div class="col">
-		<h3 class="@Model.owner.Rank.name">@Model.owner.Username</h3>
+		<h3 style="color:@Model.owner.Rank.color;">@Model.owner.Username</h3>
 		@Model.owner.Rank.name
 		<hr>
 		@{
@@ -61,7 +61,7 @@
 					</div>
 					<div class="col" data-id="@p.id">
 						<div class="row profilemessage">
-							<a href="/profile/@p.author.Username" class="user">
+							<a href="/profile/@p.author.Username" style="color:@p.author.Rank.color;">
 								@p.author.Username
 							</a>
 							<span>&nbsp;@p.post</span>
@@ -102,7 +102,7 @@
 									</div>
 									<div class="col">
 										<div class="row profileMessageComment">
-											<a href="/profile/@c.author.Username" class="user">
+											<a href="/profile/@c.author.Username" style="color:@c.author.Rank.color;">
 												@c.author.Username
 											</a>
 											<span>&nbsp;@c.post</span>

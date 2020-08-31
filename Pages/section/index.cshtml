@@ -16,12 +16,15 @@
 			@foreach(var t in Model.threads)
 			{
 				<tr class="thread">
-					<th class="align-middle"><a href="/section/@RouteData.Values["sec"]/@t.id">@t.name</a></th>
+					<th class="align-middle">
+						<a href="/section/@RouteData.Values["sec"]/@t.id">@t.name</a><br>
+						<small style="color:@t.author.Rank.color;">@t.author.Username</small>
+					</th>
 					<td class="text-center align-middle">@Model.comments[t]</td>
 					<td class="text-center align-middle">@t.views</td>
 					<td class="text-right">
-						<small class="user">@t.latestSource</small><br>
-						<small>@t.latest</small>
+						<small style="color:@t.latestSource.Rank.color;">@t.latestSource.Username</small><br>
+						<small class="text-muted">@t.latest</small>
 					</td>
 				</tr>
 			}
@@ -35,3 +38,4 @@
 		}
 	}
 </div>
+<script src="~/js/whiteOnHover.js"></script>

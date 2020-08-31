@@ -1,0 +1,30 @@
+@page "/admin/ranks/{r}"
+@{
+    Layout = "admin";
+}
+@model RankViewModel
+<a href="./">Back</a>
+<table class="table text-center">
+	<thead>
+		<tr>
+			<th>id</th>
+			<th>Name</th>
+			<th>Color</th>
+			<th>Can Post</th>
+			<th>Can Edit (others)</th>
+			<th>Can Delete (others)</th>
+			<th>Control Panel Access</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th>@Model.rank.id</th>
+			<th>@Model.rank.name</th>
+			<th style="color:@Model.rank.color;">@Model.rank.color</th>
+			<th>@Model.rank.post</th>
+			<th>@Model.rank.edit</th>
+			<th>@Model.rank.delete</th>
+			<th>@Model.rank.controlPanel</th>
+		</tr>
+	</tbody>
+</table>

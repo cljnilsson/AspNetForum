@@ -3,10 +3,11 @@
 
 @foreach(var p in Model.result)
 {
-	<h3>@p.thread.name</h3>
+	<a href="/section/@p.thread.section.Name/@p.thread.id"><h3>@p.thread.name</h3></a>
 	@p.post
 	<br>
-	<small class="user">@p.author</small>
-	<small>, @p.date</small>
+	<a href="/profile/@p.author.Username"><small style="color:@p.author.Rank.color;">@p.author.Username</small></a>
+	<small>, </small>
+	<small class="text-muted">@p.date</small>
 	<br><br>
 }

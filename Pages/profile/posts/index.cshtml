@@ -5,9 +5,9 @@
 {
 	<div class="post row">
 		<div class="col-sm-2 text-center">
-			<h5 class="mt-2">@p.author</h5>
-			<small>Default Title</small>
-			<img class="avatar mb-3" src="~/images/default-avatar.png">
+			<h5 class="mt-2 @Model.owner.Rank.name">@p.author.Username</h5>
+			<small>@Model.owner.Rank.name</small><br>
+			<img class="avatar mb-3" src="~/images/avatars/@Model.owner.avatar">
 		</div>
 		<div class="col">
 			@Html.Raw(p.post)

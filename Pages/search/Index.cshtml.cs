@@ -20,7 +20,6 @@ namespace aspnetcoreapp.Pages
 		public void OnGet()
         {
 			string q = Request.Query["q"];
-			Console.WriteLine(q);
 			var db = new DB();
 			result = db.searchPosts(q);
 		}

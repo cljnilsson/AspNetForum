@@ -17,13 +17,13 @@
 		{
 			<tr>
 				<th scope="row">@i</th>
-				<td>@r.name</td>
+				<td><a href="/admin/ranks/@r.name" style="color:@r.color;">@r.name</a></td>
 				@if(r.delete == true || r.edit == true || r.controlPanel == true) {
 					<td>Yes</td>
 				} else {
 					<td>No</td>
 				}
-				<td class="text-right">Edit Copy Delete</td>
+				<td class="text-right"><a href="/admin/ranks/@r.name/edit">Edit<a> Copy Delete</td>
 			</tr>
 			i++;
 		}

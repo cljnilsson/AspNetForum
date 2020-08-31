@@ -22,7 +22,7 @@
 							if(s.latest > DateTime.MinValue) {
 								<span class="thread">@s.latestThread</span>
 								<br>
-								<a href="/profile/@s.latestSource"><small class="user">@s.latestSource</small></a><small>, @s.latest</small>
+								<a href="/profile/@s.latestSource.Username"><small style="color:@s.latestSource.Rank.color;">@s.latestSource.Username</small></a><small>, </small><small class="text-muted">@s.latest</small>
 							}
 						}
 					</div>

@@ -11,9 +11,10 @@
 </div>
 <div class="row">
 	<div class="col-sm-2 text-center">
-		<a href="/profile/@Model.thread.author.Username"><h5 class="mt-2 user">@Model.thread.author.Username</h5></a>
+		<a href="/profile/@Model.thread.author.Username"><h5 class="mt-2" style="color:@Model.thread.author.Rank.color;">@Model.thread.author.Username</h5></a>
 		<small>@Model.thread.author.Rank.name</small><br>
-		<img class="avatar mb-3" src="~/images/default-avatar.png">
+		<img class="avatar mb-3" src="~/images/avatars/@Model.thread.author.avatar">
+		<p>Posts: @Model.thread.author.posts</p>
 	</div>
 	<div class="col pl-0">
 		<p class="mt-2">@Html.Raw(Model.thread.post)</p>
@@ -23,9 +24,10 @@
 {
 	<div class="post row">
 		<div class="col-sm-2 text-center">
-			<a href="/profile/@p.author.Username"><h5 class="mt-2 user">@p.author.Username</h5></a>
+			<a href="/profile/@p.author.Username"><h5 class="mt-2" style="color:@p.author.Rank.color;">@p.author.Username</h5></a>
 			<small>@p.author.Rank.name</small><br>
-			<img class="avatar mb-3" src="~/images/default-avatar.png">
+			<img class="avatar mb-3" src="~/images/avatars/@p.author.avatar">
+			<p>Posts: @p.author.posts</p>
 		</div>
 		<div class="col">
 			<div class="row">
