@@ -1,5 +1,6 @@
 @page "/section/{sec}/{id:int}"
 @model ThreadModel;
+@using Microsoft.AspNetCore.Http;
 
 <div class="threadHeader row">
 	<div class="col">
@@ -45,3 +46,47 @@
 		</div>
 	</div>
 }
+<div class="row">
+		<div class="col">
+			@{
+				var user = new Byte[20];
+				var exists = HttpContext.Session.TryGetValue("username", out user);
+
+				if(exists) {
+					<form method="post" id="postform">
+						<div id="editor-container" style="height: 300px">
+							
+						</div>
+						<input name="author" style="display:none" value="@HttpContext.Session.GetString("username")">
+						<textarea name="text" style="display:none" id="hiddenArea"></textarea>
+						<input name="thread" style="display:none"/ value="@RouteData.Values["id"]">
+
+						<button type="submit" class="btn btn-outline-light mt-3">Create Thread</button>
+					</form>
+
+					<script>
+						let options = {
+							modules: {
+								toolbar: [
+									[{ header: [1, 2, false] }],
+									['bold', 'italic', 'underline'],
+									['image', 'code-block']
+								]
+							},
+							theme: 'snow'  // or 'bubble'
+						};
+
+						var quill = new Quill('#editor-container', options);
+
+						$("#postform").on("submit", function(){
+							$("#hiddenArea").val($("#editor-container").html());
+						});
+					</script>
+				} else {
+					<div class="text-center">
+						<h3>You need you log in to make a post a reply</h3>
+					</div>
+				}
+			}
+		</div>
+	</div>

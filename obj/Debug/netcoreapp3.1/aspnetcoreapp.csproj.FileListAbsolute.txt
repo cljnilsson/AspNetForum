@@ -83,3 +83,4 @@ G:\Personal Projects\aspnetcoreapp\bin\Debug\netcoreapp3.1\tsconfig.json
 G:\Personal Projects\aspnetcoreapp\bin\Debug\netcoreapp3.1\package-lock.json
 G:\Personal Projects\aspnetcoreapp\bin\Debug\netcoreapp3.1\package.json
 G:\Personal Projects\aspnetcoreapp\obj\Debug\netcoreapp3.1\Razor\Pages\admin\ranks\view\index.cshtml.g.cs
+G:\Personal Projects\aspnetcoreapp\obj\Debug\netcoreapp3.1\Razor\Pages\admin\ranks\edit\index.cshtml.g.cs

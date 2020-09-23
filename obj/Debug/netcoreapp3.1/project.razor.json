@@ -14387,7 +14387,7 @@
         }
       }
     ],
-    "CSharpLanguageVersion": 800
+    "CSharpLanguageVersion": 900
   },
   "RootNamespace": "aspnetcoreapp",
   "Documents": [
@@ -14414,6 +14414,11 @@
     {
       "FilePath": "g:\\Personal Projects\\aspnetcoreapp\\Pages\\register\\index.cshtml",
       "TargetPath": "Pages\\register\\index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\Personal Projects\\aspnetcoreapp\\Pages\\admin\\ranks\\edit\\index.cshtml",
+      "TargetPath": "Pages\\admin\\ranks\\edit\\index.cshtml",
       "FileKind": "mvc"
     },
     {

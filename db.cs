@@ -243,6 +243,17 @@ public class DB : DbContext
 		}
 	}
 
+	public void makeThreadPost(int thread, string post, string user) {
+		var t = GetThread(thread); 
+		var u = GetUserByName(user);
+
+		AddToPostCountOfUser(u.Username);
+		var p = new Post{author = u, post = post, thread = t};
+		
+		Posts.Add(p);
+		SaveChanges();
+	}
+
 	public void makeThread(string thread, string post, string user, string section) {
 		var s = Sections.Where(s => s.Name == section).FirstOrDefault();
 		Threads.Add(new Thread{name = thread, post = post, author = GetUserByName(user), section = s});

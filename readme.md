@@ -55,7 +55,7 @@ A relatively simple forum for learning purposes.
 
 ### Todo
 
-* User rank system
+<https://trello.com/b/6ILZeOMg/net-forum-demo>
 
 ### Unconfirmed Features
 

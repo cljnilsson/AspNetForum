@@ -70,10 +70,6 @@ a:hover {
 	color: white;
 }
 
-.thread:hover small:not(:hover) {
-	color: white !important;
-}
-
 .threadHeader {
 	border-bottom: 3px solid #00b365;
 }
