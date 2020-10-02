@@ -1,0 +1,30 @@
+@page "/members"
+@model MembersModel
+<div class="row mt-3 mb-2">
+	<div class="col">
+		<div class="btn-group btn-group-toggle" data-toggle="buttons">
+			<label class="btn active">
+				<input type="radio" id="option1" autocomplete="off" checked> Rank
+			</label>
+			<label class="btn">
+				<input type="radio" id="option2" autocomplete="off"> Posts
+			</label>
+			<label class="btn">
+				<input type="radio" id="option3" autocomplete="off"> Newest
+			</label>
+		</div>
+	</div>
+</div>
+@foreach(var u in Model.users)
+{
+	<div class="row">
+		<div class="col-sm-2 text-center">
+			<img class="avatar mb-3" src="~/images/avatars/@u.avatar">
+		</div>
+		<div class="col">
+			<h5 class="mt-2" style="color:@u.Rank.color;">@u.Username</h5>
+			<small>@u.Rank.name</small><br>
+			<p>Posts: @u.posts</p>
+		</div>
+	</div>
+}

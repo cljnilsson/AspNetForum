@@ -159,6 +159,16 @@ public class DB : DbContext
 		return Ranks.ToList();
 	}
 
+	public List<User> GetAllUsers()  
+	{  	
+		return Users.ToList();
+	}
+
+	public List<User> GetAllUsersWithRank()  
+	{  	
+		return Users.Include(u => u.Rank).ToList();
+	}
+
 	public List<Thread> GetThreadsFromSection(string section)  
 	{  
 		var s = Sections.Where(s => s.Name == section).First();

@@ -16,6 +16,22 @@
     border-top: 1px solid #00b365;
 }
 
+.btn {
+    color: #00b365;
+    border-color: #00b365;
+}
+
+.btn-outline-primary:hover {
+    color: white;
+	border-color: rgba(0, 221, 125, .5);
+	background-color: rgba(0, 221, 125, .5);
+}
+
+.active {
+    color: white;
+	background-color: rgba(0, 221, 125, .5);
+}
+
 .btn-outline-primary {
     color: #00b365;
     border-color: #00b365;
