@@ -1,0 +1,16 @@
+using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Model;
+
+namespace aspnetcoreapp.Pages
+{
+    public class RankCopyModel : PageModel
+    {
+        public IActionResult OnGet(string r)
+        {
+			new DB().copyRank(r);
+			return Redirect($"/admin/ranks/");
+        }
+    }
+}

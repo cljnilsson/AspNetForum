@@ -16,6 +16,7 @@ namespace aspnetcoreapp.Pages
         public void OnGet()
         {
 			users = new DB().GetAllUsersWithRank();
+			users = users.OrderBy(u => u.posts).Reverse().ToList();
         }
     }
 }

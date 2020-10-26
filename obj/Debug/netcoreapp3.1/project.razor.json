@@ -14402,8 +14402,18 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "g:\\Personal Projects\\aspnetcoreapp\\Pages\\admin\\ranks\\copy - Copy\\index.cshtml",
+      "TargetPath": "Pages\\admin\\ranks\\copy - Copy\\index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "g:\\Personal Projects\\aspnetcoreapp\\Pages\\admin\\index.cshtml",
       "TargetPath": "Pages\\admin\\index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\Personal Projects\\aspnetcoreapp\\Pages\\admin\\ranks\\copy\\index.cshtml",
+      "TargetPath": "Pages\\admin\\ranks\\copy\\index.cshtml",
       "FileKind": "mvc"
     },
     {

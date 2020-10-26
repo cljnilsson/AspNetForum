@@ -1,3 +1,4 @@
+using System.Text.RegularExpressions;
 using System;
 using MySql.Data.MySqlClient;
 using Model;
@@ -267,6 +268,18 @@ public class DB : DbContext
 	public void makeThread(string thread, string post, string user, string section) {
 		var s = Sections.Where(s => s.Name == section).FirstOrDefault();
 		Threads.Add(new Thread{name = thread, post = post, author = GetUserByName(user), section = s});
+		SaveChanges();
+	}
+
+	public void copyRank(string rank) {
+		var r = GetRankByName(rank);
+		Ranks.Add(new Rank{name = r.name + " copy", edit = r.edit, post = r.post, delete = r.delete, controlPanel = r.controlPanel, color = r.color});
+		SaveChanges();
+	}
+
+	public void deleteRank(string rank) {
+		var r = GetRankByName(rank);
+		Remove(r);
 		SaveChanges();
 	}
 
