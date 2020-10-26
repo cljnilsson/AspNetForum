@@ -64,7 +64,7 @@ public class DB : DbContext
 			new Rank{name = "Admin" 	, edit = true  , post = true  , delete = true  , controlPanel = true  , color = "#dc6434" },
 			new Rank{name = "Moderator" , edit = true  , post = true  , delete = true  , controlPanel = false , color = "#34dcaa" },
 			new Rank{name = "User" 		, edit = false , post = true  , delete = false , controlPanel = false , color = "#3490dc" },
-			new Rank{name = "Banned" 	, edit = false , post = false , delete = false , controlPanel = false , color = "#3490dc" },
+			new Rank{name = "Banned" 	, edit = false , post = false , delete = false , controlPanel = false , color = "#777877" },
 		};
 
 		Ranks.AddRange(ranks);
