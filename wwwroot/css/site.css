@@ -19,6 +19,10 @@ h3 {
 	margin-bottom: 0;
 }
 
+hr {
+	border-color: #00b365;
+}
+
 h3 a {
 	color: #00b365;
 }

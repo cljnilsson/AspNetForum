@@ -80,7 +80,6 @@ namespace aspnetcoreapp.Pages
 			onLoad(user);
 
 			if(avatar != null) {
-				Console.WriteLine("HNSAKLJDNKJASND;MASD");
 				db.UpdateUserAvatar(user, ProcessUploadedFile());
 				return Redirect($"/profile/{user}");
 			}
