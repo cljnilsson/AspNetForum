@@ -18,7 +18,7 @@ namespace aspnetcoreapp.Pages
 			var db = new DB();
 			rank = db.GetRankByName(r);
 
-			var toCheck = new string[] {"name", "color", "post", "edit", "delete", "controlPanel"};
+			var toCheck = new string[] {"name", "color", "post", "edit", "delete", "lockthread", "controlPanel"};
 
 			foreach(var s in toCheck) {
 				var sent = Request.Form[s].ToString();

@@ -61,10 +61,10 @@ public class DB : DbContext
 		}
 
 		var ranks = new Rank[] {
-			new Rank{name = "Admin" 	, edit = true  , post = true  , delete = true  , controlPanel = true  , color = "#dc6434" },
-			new Rank{name = "Moderator" , edit = true  , post = true  , delete = true  , controlPanel = false , color = "#34dcaa" },
-			new Rank{name = "User" 		, edit = false , post = true  , delete = false , controlPanel = false , color = "#3490dc" },
-			new Rank{name = "Banned" 	, edit = false , post = false , delete = false , controlPanel = false , color = "#777877" },
+			new Rank{name = "Admin" 	, edit = true  , post = true  , delete = true  , lockthread = true, controlPanel = true  , color = "#dc6434" },
+			new Rank{name = "Moderator" , edit = true  , post = true  , delete = true  , lockthread = true, controlPanel = false , color = "#34dcaa" },
+			new Rank{name = "User" 		, edit = false , post = true  , delete = false , lockthread = false, controlPanel = false , color = "#3490dc" },
+			new Rank{name = "Banned" 	, edit = false , post = false , delete = false , lockthread = false, controlPanel = false , color = "#777877" },
 		};
 
 		Ranks.AddRange(ranks);
@@ -109,8 +109,9 @@ public class DB : DbContext
 		Users.AddRange(demousers);
 		SaveChanges();
 
-		CreateMod  ("Mod1", "mod", "mod@admin.com");
-		CreateMod  ("Mod2", "mod", "mod@admin.com");
+		CreateUser ("user" , "user" , "user@random.com");
+		CreateMod  ("Mod1" , "mod"  , "mod@admin.com");
+		CreateMod  ("Mod2" , "mod"  , "mod@admin.com");
 		CreateAdmin("admin", "admin", "admin@admin.com"); // Default admin account
 	}
 
@@ -212,6 +213,14 @@ public class DB : DbContext
 		return Posts.Where(t => t.thread == GetThread(id)).Include(c => c.author).ThenInclude(a => a.Rank).ToList();
 	}
 
+	public Post GetPostById(int id) {
+		return Posts.Where(p => p.id == id).First();
+	}
+
+	public Post GetPostByIdWithAuthor(int id) {
+		return Posts.Where(p => p.id == id).Include(p => p.author).First();
+	}
+
 	public void updateLastLogin(String username) {
 		var u = GetUserByName(username);
 		u.lastLogin = DateTime.Now;
@@ -280,6 +289,14 @@ public class DB : DbContext
 	public void deleteRank(string rank) {
 		var r = GetRankByName(rank);
 		Remove(r);
+		SaveChanges();
+	}
+
+	public void deleteThreadPost(int id) {
+		var p = Posts.Where(p => p.id == id).Include(p => p.author).First();
+		var u = p.author;
+		u.posts--;
+		Remove(p);
 		SaveChanges();
 	}
 

@@ -1,0 +1,47 @@
+<script src="https://unpkg.com/quill-image-uploader@1.2.1/dist/quill.imageUploader.min.js"></script>
+<script>
+	Quill.register("modules/imageUploader", ImageUploader);
+
+	let options = {
+		modules: {
+			toolbar: [
+				[{ header: [1, 2, false] }],
+				['bold', 'italic', 'underline'],
+				['image', 'code-block']
+			],
+			// Default example, should update with await/async in the future
+			imageUploader: {
+				upload: file => {
+					return new Promise((resolve, reject) => {
+						const formData = new FormData();
+						formData.append("image", file);
+
+						fetch(
+							"https://api.imgbb.com/1/upload?key=b98e506bd1b9d97bfdbc67cc99711a6b",
+							{
+							method: "POST",
+							body: formData
+							}
+						)
+						.then(response => response.json())
+						.then(result => {
+							console.log(result);
+							resolve(result.data.url);
+						})
+						.catch(error => {
+							reject("Upload failed");
+							console.error("Error:", error);
+						});
+					});
+				}
+			}
+		},
+		theme: 'snow'  // or 'bubble'
+	};
+
+	var quill = new Quill('#editor-container', options);
+
+	$("#postform").on("submit", function(){
+		$("#hiddenArea").val($("#editor-container > .ql-editor").html());
+	});
+</script>

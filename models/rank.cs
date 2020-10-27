@@ -11,6 +11,7 @@ namespace Model
 		public Boolean edit 		{ get; set; }
 		public Boolean post 		{ get; set; }
 		public Boolean delete 		{ get; set; }
+		public Boolean lockthread 	{ get; set; }
 		public Boolean controlPanel { get; set; }
 		public Boolean permanent 	{ get; set; }
 		[Required]

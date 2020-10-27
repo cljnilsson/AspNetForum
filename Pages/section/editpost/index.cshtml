@@ -1,0 +1,16 @@
+@page "/section/{sec}/{id:int}/{post:int}/edit"
+@model PostEditModel
+@using Microsoft.AspNetCore.Http;
+
+<form method="post" id="postform" class="mt-3">
+	<div id="editor-container" style="height: 300px">
+		
+	</div>
+
+	<textarea name="text" style="display:none" id="hiddenArea"></textarea>
+	<input name="post" style="display:none"/ value="@RouteData.Values["post"]">
+
+	<button type="submit" class="btn btn-outline-light mt-3">Post</button>
+</form>
+
+<partial name="quill" />

@@ -87,3 +87,6 @@ G:\Personal Projects\aspnetcoreapp\obj\Debug\netcoreapp3.1\Razor\Pages\admin\ran
 G:\Personal Projects\aspnetcoreapp\obj\Debug\netcoreapp3.1\Razor\Pages\members\index.cshtml.g.cs
 G:\Personal Projects\aspnetcoreapp\obj\Debug\netcoreapp3.1\Razor\Pages\admin\ranks\copy\index.cshtml.g.cs
 G:\Personal Projects\aspnetcoreapp\obj\Debug\netcoreapp3.1\Razor\Pages\admin\ranks\delete\index.cshtml.g.cs
+G:\Personal Projects\aspnetcoreapp\obj\Debug\netcoreapp3.1\Razor\Pages\section\deletepost\index.cshtml.g.cs
+G:\Personal Projects\aspnetcoreapp\obj\Debug\netcoreapp3.1\Razor\Pages\section\editpost\index.cshtml.g.cs
+G:\Personal Projects\aspnetcoreapp\obj\Debug\netcoreapp3.1\Razor\Pages\Shared\quill.cshtml.g.cs

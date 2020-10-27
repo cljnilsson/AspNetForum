@@ -14392,6 +14392,11 @@
   "RootNamespace": "aspnetcoreapp",
   "Documents": [
     {
+      "FilePath": "g:\\Personal Projects\\aspnetcoreapp\\Pages\\admin\\ranks\\delete\\index.cshtml",
+      "TargetPath": "Pages\\admin\\ranks\\delete\\index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "g:\\Personal Projects\\aspnetcoreapp\\Pages\\Shared\\loginmodal.cshtml",
       "TargetPath": "Pages\\Shared\\loginmodal.cshtml",
       "FileKind": "mvc"
@@ -14402,11 +14407,6 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "g:\\Personal Projects\\aspnetcoreapp\\Pages\\admin\\ranks\\copy - Copy\\index.cshtml",
-      "TargetPath": "Pages\\admin\\ranks\\copy - Copy\\index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
       "FilePath": "g:\\Personal Projects\\aspnetcoreapp\\Pages\\admin\\index.cshtml",
       "TargetPath": "Pages\\admin\\index.cshtml",
       "FileKind": "mvc"
@@ -14414,6 +14414,11 @@
     {
       "FilePath": "g:\\Personal Projects\\aspnetcoreapp\\Pages\\admin\\ranks\\copy\\index.cshtml",
       "TargetPath": "Pages\\admin\\ranks\\copy\\index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\Personal Projects\\aspnetcoreapp\\Pages\\section\\deletepost\\index.cshtml",
+      "TargetPath": "Pages\\section\\deletepost\\index.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -14444,6 +14449,11 @@
     {
       "FilePath": "g:\\Personal Projects\\aspnetcoreapp\\Pages\\Shared\\admin.cshtml",
       "TargetPath": "Pages\\Shared\\admin.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\Personal Projects\\aspnetcoreapp\\Pages\\section\\editpost\\index.cshtml",
+      "TargetPath": "Pages\\section\\editpost\\index.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -14494,6 +14504,11 @@
     {
       "FilePath": "g:\\Personal Projects\\aspnetcoreapp\\Pages\\admin\\ranks\\view\\index.cshtml",
       "TargetPath": "Pages\\admin\\ranks\\view\\index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\Personal Projects\\aspnetcoreapp\\Pages\\Shared\\quill.cshtml",
+      "TargetPath": "Pages\\Shared\\quill.cshtml",
       "FileKind": "mvc"
     },
     {

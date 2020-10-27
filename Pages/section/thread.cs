@@ -3,6 +3,7 @@
 	using Microsoft.AspNetCore.Mvc;
 	using Microsoft.AspNetCore.Mvc.RazorPages;
 	using Microsoft.Extensions.Logging;
+	using Microsoft.AspNetCore.Http;
 
 	using Model;
 
@@ -10,9 +11,16 @@
     {
 		public Thread thread;
 		public List<Post> posts;
+
+		public User loggedin;
         public void OnGet(int id)
         {
 			var db = new DB();
+			var name = HttpContext.Session.GetString("username");
+			if(name != null && name != "") {
+				loggedin = db.GetUserByNameWithRank(name);
+			}
+
 			thread = db.GetThread(id);
 			posts = db.GetPostsInThread(thread.id);
 
@@ -21,7 +29,6 @@
         }
 
 		public IActionResult OnPost(string sec, int id) {
-			System.Console.WriteLine("TRYING TO MAKE POST IN THREAD");
 			var db 		= new DB();
 			var post 	= Request.Form["text"];
 			var author 	= Request.Form["author"];

@@ -2,6 +2,11 @@
 @model ThreadModel;
 @using Microsoft.AspNetCore.Http;
 
+@{
+	var user = new Byte[20];
+	var exists = HttpContext.Session.TryGetValue("username", out user);
+}
+
 <div class="threadHeader row">
 	<div class="col">
 		<h3 class="m-2 ser">@Model.thread.name</h3>
@@ -44,14 +49,29 @@
 		<div class="col text-muted">
 			<small>@p.date</small>
 		</div>
+		<div class="text-right mr-1">
+			@{
+				if(exists) {
+					var username = @Model.loggedin.Username;
+					if(username == p.author.Username) {
+						<a href="./@Model.thread.id/@p.id/edit">Edit</a>
+						<a href="./@Model.thread.id/@p.id/delete">Delete</a>
+					} else {
+						if(@Model.loggedin.Rank.edit) {
+							<a href="./@Model.thread.id/@p.id/edit">Edit</a>
+						}
+						if(@Model.loggedin.Rank.delete) {
+							<a href="./@Model.thread.id/@p.id/delete">Delete</a>
+						}
+					}
+				}
+			}
+		</div>
 	</div>
 }
 <div class="row">
 		<div class="col">
 			@{
-				var user = new Byte[20];
-				var exists = HttpContext.Session.TryGetValue("username", out user);
-
 				if(exists) {
 					<form method="post" id="postform">
 						<div id="editor-container" style="height: 300px">
@@ -61,57 +81,10 @@
 						<textarea name="text" style="display:none" id="hiddenArea"></textarea>
 						<input name="thread" style="display:none"/ value="@RouteData.Values["id"]">
 
-						<button type="submit" class="btn btn-outline-light mt-3">Create Thread</button>
+						<button type="submit" class="btn btn-outline-light mt-3">Post</button>
 					</form>
 
- 					<script src="https://unpkg.com/quill-image-uploader@1.2.1/dist/quill.imageUploader.min.js"></script>
-
-					<script>
-						Quill.register("modules/imageUploader", ImageUploader);
-
-						let options = {
-							modules: {
-								toolbar: [
-									[{ header: [1, 2, false] }],
-									['bold', 'italic', 'underline'],
-									['image', 'code-block']
-								],
-								// Default example, should update with await/async in the future
-								imageUploader: {
-									upload: file => {
-										return new Promise((resolve, reject) => {
-											const formData = new FormData();
-											formData.append("image", file);
-
-											fetch(
-												"https://api.imgbb.com/1/upload?key=b98e506bd1b9d97bfdbc67cc99711a6b",
-												{
-												method: "POST",
-												body: formData
-												}
-											)
-											.then(response => response.json())
-											.then(result => {
-												console.log(result);
-												resolve(result.data.url);
-											})
-											.catch(error => {
-												reject("Upload failed");
-												console.error("Error:", error);
-											});
-										});
-									}
-								}
-							},
-							theme: 'snow'  // or 'bubble'
-						};
-
-						var quill = new Quill('#editor-container', options);
-
-						$("#postform").on("submit", function(){
-							$("#hiddenArea").val($("#editor-container > .ql-editor").html());
-						});
-					</script>
+					<partial name="quill" />
 				} else {
 					<div class="text-center">
 						<h3>You need you log in to make a post a reply</h3>
