@@ -79,7 +79,7 @@ public class DB : DbContext
 			return; // DB has been seeded
 		}
 
-		var sections = new Section[] {
+		var sections = new List<Section>() {
 			new Section{Name = "Gaming" 		, Image = "gaming.png" 		, description = "Talk about any game"},
 			new Section{Name = "News"   		, Image = "news.png"   		, description = "Post news here and share your views on them!"},
 			new Section{Name = "Software"  		, Image = "wrench.png"  	, description = "Discuess software here!"},
@@ -91,6 +91,10 @@ public class DB : DbContext
 			new Section{Name = "Books"   		, Image = "books.png"   	, description = "Share your thoughts about books you've read, or are writing"},
 			new Section{Name = "Off-topic"		, Image = "offtopic.png"   	, description = "Talk about anything random here"}
 		};
+
+		sections.Add(new Section{Name = "World of Warcraft" , Image = "wow.png"		, description = "", parent = sections[0]});
+		sections.Add(new Section{Name = "Diablo 3" 			, Image = "diablo.png"	, description = "", parent = sections[0]});
+		sections.Add(new Section{Name = "Overwatch" 		, Image = "ow.png"		, description = "", parent = sections[0]});
 
 		Sections.AddRange(sections);
 		SaveChanges();
@@ -151,11 +155,20 @@ public class DB : DbContext
 		builder.Entity<Section>().ToTable("Section");
 	}
 
-	public List<Section> GetAllSections()  
+	public Section GetSection(string name)  
 	{  	
-		return Sections.ToList();
+		return Sections.Where(s => s.Name == name).First();
 	}
 
+	public List<Section> GetAllSections()  
+	{  	
+		return Sections.Where(s => s.parent == null).ToList();
+	}
+
+	public List<Section> GetAllSectionsOfSection(Section sec)  
+	{  	
+		return Sections.Where(s => s.parent == sec).ToList();
+	}
 	public List<Rank> GetAllRanks()  
 	{  	
 		return Ranks.ToList();

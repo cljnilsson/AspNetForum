@@ -9,6 +9,7 @@ namespace Model
 		public string Name 			{ get; set; }
 		public string description 	{ get; set; }
 		public string Image 		{ get; set; }
+		public Section parent		{ get; set; }
 		
 		[NotMapped] //Does not add field to DB
 		public DateTime latest 		{ get; set; }

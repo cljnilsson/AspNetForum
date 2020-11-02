@@ -10,10 +10,14 @@
 	public class SectionModel : PageModel
     {
 		public List<Thread> threads;
+		public List<Section> subsections;
 		public Dictionary<Thread, int> comments = new Dictionary<Thread, int>();
+		private DB db = new DB();
         public void OnGet(string sec)
         {
-			var db = new DB();
+			var current = db.GetSection(sec);
+			subsections = db.GetAllSectionsOfSection(current);
+
 			threads = db.GetThreadsFromSection(sec);
 			foreach(var t in threads) {
 				var posts 	= db.GetPostsInThread(t.id);

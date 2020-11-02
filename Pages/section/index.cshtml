@@ -1,12 +1,29 @@
 @page "/section/{sec}"
 @model SectionModel
 @using Microsoft.AspNetCore.Http
+<div class="row pb-3">
+	<div>
+		<h3>@RouteData.Values["sec"]</h3>
+	</div>
+</div>
+
+@foreach(var s in Model.subsections)
+{
+	<a href="/section/@s.Name"><div class="row d-flex align-items-center">
+		<div class="col-sm-1 text-center">
+				<img class="sectionIcon" src="~/images/@s.Image">
+			</div>
+		<div class="col">
+			<h5>@s.Name</h5>
+		</div>
+	</div></a>
+}
 
 <div class="row">
 	<table class="table">
 		<thead>
 			<tr>
-				<th><h3>@RouteData.Values["sec"]</h3></th>
+				<th></h3></th>
 				<th class="text-center">Comments</th>
 				<th class="text-center">Views</th>
 				<th></th>
